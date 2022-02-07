@@ -1,6 +1,6 @@
 import { addItemToCart } from "../model/cart.js";
 
-export {addProductToLocalCart, setUpListenerWithCart}
+export {setUpListenerWithCart}
 
 
 function setUpListenerWithCart(cart){
@@ -14,10 +14,4 @@ function setUpListenerWithCart(cart){
 
     return addProductToCart;
 
-}
-
-function addProductToLocalCart(event){
-    const productId = event.currentTarget.closest(".card").dataset.id;
-    addItemToCart(productId);
-    console.log(localStorage.getItem(productId));
 }

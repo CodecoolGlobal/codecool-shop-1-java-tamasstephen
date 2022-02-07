@@ -1,3 +1,9 @@
+:root {
+    --color-cart-tooltip-background: steelblue;
+    --color-dark-text: black;
+    --color-light-text: white;
+}
+
 .glyphicon {
     margin-right:5px;
 }
@@ -59,4 +65,11 @@
 .list-group-item-text
 {
     margin: 0 0 11px;
+}
+
+#cart-tooltip {
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--color-cart-tooltip-background);
+    color: var(--color-light-text);
 }

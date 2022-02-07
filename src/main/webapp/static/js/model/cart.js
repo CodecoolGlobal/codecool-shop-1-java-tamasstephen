@@ -1,4 +1,5 @@
 export { addItemToCart, Cart }
+import { updateCartTooltip } from "../view/view.js";
 
 function cartHasProduct(productId){
     const product = localStorage.getItem(productId);
@@ -21,7 +22,9 @@ function addItemToCart(productId){
 
 }
 
+
 class Cart {
+
 
     constructor() {
 
@@ -29,7 +32,22 @@ class Cart {
 
     }
 
-    addOneMoreItemToCart = function(productId){
+
+
+    clearCart = function(){
+
+        this.cart = {};
+
+    }
+
+    initCartFromLocalStorage = function() {
+
+            const itemsInCart = Object.values(localStorage).reduce((a, c) => Number(a) + Number(c));
+            updateCartTooltip(itemsInCart);
+
+    }
+
+    addOneMoreItemToCart (productId){
 
         const isAlreadyInCart = this.cart[productId];
 
@@ -43,11 +61,7 @@ class Cart {
 
         }
 
-    }
-
-    clearCart = function(){
-
-        this.cart = {};
+        this.initCartFromLocalStorage();
 
     }
 
