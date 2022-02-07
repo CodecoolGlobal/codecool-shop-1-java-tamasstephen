@@ -1,4 +1,4 @@
-export { addItemToCart }
+export { addItemToCart, Cart }
 
 function cartHasProduct(productId){
     const product = localStorage.getItem(productId);
@@ -16,6 +16,32 @@ function addItemToCart(productId){
     } else {
 
         localStorage.setItem(productId, "1");
+
+    }
+
+}
+
+class Cart {
+
+    constructor() {
+
+        this.cart = {}
+
+    }
+
+    addOneMoreItemToCart = function(productId){
+
+        const isAlreadyInCart = this.cart[productId];
+
+        if (!isAlreadyInCart){
+
+            this.cart[productId] = 1;
+
+        } else {
+
+            this.cart[productId] += 1;
+
+        }
 
     }
 

@@ -1,12 +1,15 @@
-import {addProductToLocalCart} from "./controller/listen.js";
+import {addProductToLocalCart, setUpListenerWithCart} from "./controller/listen.js";
+import {Cart} from "./model/cart.js";
 
 init();
 
 function init(){
-    setUpProductButtons();
+    const cart = new Cart();
+    const listener = setUpListenerWithCart(cart);
+    setUpProductButtons(listener);
 }
 
-function setUpProductButtons(){
+function setUpProductButtons(fnc){
     const buttons = document.querySelectorAll(".add-to-cart");
-    buttons.forEach(button => button.addEventListener("click", addProductToLocalCart));
+    buttons.forEach(button => button.addEventListener("click", fnc));
 }
