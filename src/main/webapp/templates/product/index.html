@@ -7,6 +7,8 @@
 
     <title>Codecool Shop</title>
 
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
     <!-- Bootstrap components -->
     <!-- Latest compiled and minified Jquery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -35,8 +37,14 @@
 </div>
 
 <div class="container">
-    <div class="card">
-        <strong th:text="${category.name}">Category Title</strong>
+    <div class="categories" >
+        <div th:each="category: ${categories}">
+            <span class="category" th:text="${category.name.toUpperCase()}">Category Title</span>
+        </div>
+        <div class="category">
+            <i style='font-size:24px' class='fas'>&#xf07a;</i>
+        </div>
+
     </div>
     <div id="cart">
         <div id="cart-tooltip"></div>
