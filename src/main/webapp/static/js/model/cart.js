@@ -49,7 +49,7 @@ class Cart {
 
             for (const key in localStorage) {
 
-                this.cart[key] = localStorage.getItem(key);
+                this.cart[key] = Number(localStorage.getItem(key));
 
             }
         }
@@ -72,6 +72,8 @@ class Cart {
 
         }
         const itemsInCart = Object.values(this.cart).reduce((a, c) => Number(a) + Number(c));
+
+        console.log(this.cart);
 
         updateCartTooltip(itemsInCart);
 
