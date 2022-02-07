@@ -25,7 +25,6 @@ function addItemToCart(productId){
 
 class Cart {
 
-
     constructor() {
 
         this.cart = {}
@@ -49,7 +48,11 @@ class Cart {
 
             for (const key in localStorage) {
 
-                this.cart[key] = Number(localStorage.getItem(key));
+                if (!isNaN(Number(key))){
+
+                    this.cart[key] = Number(localStorage.getItem(key));
+
+                }
 
             }
         }
