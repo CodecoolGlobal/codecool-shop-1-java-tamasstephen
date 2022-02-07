@@ -1,5 +1,5 @@
 import { setUpListenerWithCart } from "./controller/listen.js";
-import {Cart} from "./model/cart.js";
+import { Cart } from "./model/cart.js";
 import {createCartModal} from "./view/view.js";
 import { setUpModalOpener } from "./controller/listen.js";
 

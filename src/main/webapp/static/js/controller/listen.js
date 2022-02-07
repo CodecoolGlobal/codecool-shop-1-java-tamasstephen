@@ -1,4 +1,5 @@
 import { addItemToCart } from "../model/cart.js";
+import {dataHandler} from "../data/dataHandler.js";
 
 export { setUpListenerWithCart, setUpModalOpener }
 
@@ -9,7 +10,7 @@ function setUpListenerWithCart(cart){
         const productId = event.currentTarget.closest(".card").dataset.id;
         addItemToCart(productId);
         cart.addOneMoreItemToCart(productId);
-        console.log(localStorage.getItem(productId));
+        dataHandler.addOneMoreItemToCart({"id": productId});
     }
 
     return addProductToCart;

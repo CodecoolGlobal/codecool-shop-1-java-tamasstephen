@@ -41,23 +41,27 @@ class Cart {
 
     initCartFromLocalStorage() {
 
-        const itemsInCart = Object.values(localStorage).reduce((a, c) => Number(a) + Number(c));
-        updateCartTooltip(itemsInCart);
+        const cartNotEmpty = Object.values(localStorage);
 
-        if (itemsInCart > 0){
+        if (cartNotEmpty.length > 0){
 
-            for (const key in localStorage) {
+            const itemsInCart = Object.values(localStorage).reduce((a, c) => Number(a) + Number(c));
+            updateCartTooltip(itemsInCart);
 
-                if (!isNaN(Number(key))){
+                for (const key in localStorage) {
 
-                    this.cart[key] = Number(localStorage.getItem(key));
+                    if (!isNaN(Number(key))){
+
+                        this.cart[key] = Number(localStorage.getItem(key));
+
+                    }
 
                 }
 
-            }
+            console.log(this.cart);
+
         }
 
-        console.log(this.cart);
 
     }
 

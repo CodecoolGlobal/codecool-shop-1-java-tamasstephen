@@ -1,12 +1,20 @@
 const dataHandler = {
+
     async upDateOrder(product) {
-        const response = await fetch(`/api/update`, {
+        return await this.apiPost(`/api/update`, product);
+    },
+
+    async addOneMoreItemToCart(product){
+        return await this.apiPost(`/api/add`, product);
+    },
+
+    async apiPost(url, payload){
+        const response = await fetch(url, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(product)
-        });
-        const data =  await response.json();
-        return(data);
+            body: JSON.stringify(payload)
+        })
+        return await response.json();
     }
 }
 
