@@ -40,10 +40,21 @@ class Cart {
 
     }
 
-    initCartFromLocalStorage = function() {
+    initCartFromLocalStorage() {
 
-            const itemsInCart = Object.values(localStorage).reduce((a, c) => Number(a) + Number(c));
-            updateCartTooltip(itemsInCart);
+        const itemsInCart = Object.values(localStorage).reduce((a, c) => Number(a) + Number(c));
+        updateCartTooltip(itemsInCart);
+
+        if (itemsInCart > 0){
+
+            for (const key in localStorage) {
+
+                this.cart[key] = localStorage.getItem(key);
+
+            }
+        }
+
+        console.log(this.cart);
 
     }
 
@@ -60,8 +71,9 @@ class Cart {
             this.cart[productId] += 1;
 
         }
+        const itemsInCart = Object.values(this.cart).reduce((a, c) => Number(a) + Number(c));
 
-        this.initCartFromLocalStorage();
+        updateCartTooltip(itemsInCart);
 
     }
 
