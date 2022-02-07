@@ -1,6 +1,6 @@
 import { addItemToCart } from "../model/cart.js";
 
-export {setUpListenerWithCart}
+export { setUpListenerWithCart, setUpModalOpener }
 
 
 function setUpListenerWithCart(cart){
@@ -13,5 +13,18 @@ function setUpListenerWithCart(cart){
     }
 
     return addProductToCart;
+
+}
+
+function setUpModalOpener(cart, modalGenerator){
+
+    function openModal(){
+
+        const modal = modalGenerator();
+        document.querySelector("body").appendChild(modal);
+
+    }
+
+    return openModal;
 
 }

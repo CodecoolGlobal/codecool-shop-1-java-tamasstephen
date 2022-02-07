@@ -77,4 +77,8 @@ class Cart {
 
     }
 
+    getCart(){
+        return this.cart;
+    }
+
 }
