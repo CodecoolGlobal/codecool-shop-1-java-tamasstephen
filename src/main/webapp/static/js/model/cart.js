@@ -45,4 +45,10 @@ class Cart {
 
     }
 
+    clearCart = function(){
+
+        this.cart = {};
+
+    }
+
 }
