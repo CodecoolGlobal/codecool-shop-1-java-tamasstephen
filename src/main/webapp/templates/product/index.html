@@ -39,23 +39,26 @@
 
 <body>
 
-<div class="jumbotron text-center">
-    <h1>Codecool Shop</h1>
-</div>
+<nav>
 
-<div class="container">
-    <div class="categories" >
-        <div th:each="category: ${categories}">
-            <span class="category" th:text="${category.name.toUpperCase()}">Category Title</span>
+    <div class="categories container" >
+        <div class="logo"><h1>CoolTourShop</h1></div>
+        <div class="menu">
+            <div th:each="category: ${categories}">
+                <span class="category" th:text="${category.name.toUpperCase()}">Category Title</span>
+            </div>
         </div>
         <div class="category">
-            <i style='font-size:24px' class='fas'>&#xf07a;</i>
+            <div id="cart">
+                <i style='font-size:24px' class='fas'>&#xf07a;</i>
+                <div id="cart-tooltip"></div>
+            </div>
         </div>
+    </div>
 
-    </div>
-    <div id="cart">
-        <div id="cart-tooltip"></div>
-    </div>
+</nav>
+
+<div class="container">
     <div class="content">
         <div class="suppliers">
             <strong>Refine Results</strong>
