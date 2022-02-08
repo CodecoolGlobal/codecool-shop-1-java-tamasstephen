@@ -16,6 +16,14 @@ public class ProductService{
         this.productCategoryDao = productCategoryDao;
     }
 
+    public List<Product> getAllProduct(){
+        return productDao.getAll();
+    }
+
+    public List<ProductCategory> getAllCategory(){
+        return productCategoryDao.getAll();
+    }
+
     public ProductCategory getProductCategory(int categoryId){
         return productCategoryDao.find(categoryId);
     }
