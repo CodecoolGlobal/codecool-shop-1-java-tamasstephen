@@ -44,7 +44,6 @@ public class Order {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-        System.out.println(this.customer.getName());
     }
 
     public void setBillingAddress(Address billingAddress) {
@@ -64,7 +63,6 @@ public class Order {
     }
 
     public void addProduct(Integer id){
-        System.out.println(id);
 
         if (hasProduct(id)){
 
@@ -77,7 +75,6 @@ public class Order {
 
         }
 
-        System.out.println(cart);
 
     }
 
@@ -97,10 +94,8 @@ public class Order {
         Gson gson = new Gson();
         List<CartProduct> cartProductList = new ArrayList<>();
 
-        System.out.println(cart);
 
         for (Integer id: cart.keySet()){
-            System.out.println(id);
 
             Product product = products.find(id);
             CartProduct cartProduct = new CartProduct(cart.get(id),

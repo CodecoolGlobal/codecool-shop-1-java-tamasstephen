@@ -1,6 +1,7 @@
 package com.codecool.shop.controller;
 
 import com.codecool.shop.config.TemplateEngineUtil;
+import com.codecool.shop.model.Address;
 import com.codecool.shop.model.Customer;
 import com.codecool.shop.model.Order;
 import com.codecool.shop.model.ProductRef;
@@ -32,9 +33,13 @@ public class CheckoutController extends HttpServlet {
             throws ServletException, IOException {
 
         Order cart = Order.getInstance();
+
         saveCustomerOrder(request, cart);
+        saveAddressToOrder(false, request, cart);
 
-
+        if (request.getParameter("shipping-or-not") == null){
+            saveAddressToOrder(false, request, cart);
+        }
 
         PrintWriter out = response.getWriter();
         response.setCharacterEncoding("UTF-8");
@@ -54,7 +59,23 @@ public class CheckoutController extends HttpServlet {
 
     }
 
-    private void saveAddressToOrder(){
+    private void saveAddressToOrder(boolean shipping, HttpServletRequest request, Order cart){
+        String country = shipping ? "country-shipping" : "country";
+        String city = shipping ? "city-shipping" : "city";
+        String zip = shipping ? "zip-code-shipping" : "zip-code";
+        String address = shipping ? "address-shipping" : "address";
+        String countryData = request.getParameter(country);
+        String cityData = request.getParameter(city);
+        String zipData = request.getParameter(zip);
+        String addressData = request.getParameter(address);
+        Address addressObj = new Address(countryData, cityData, addressData, zipData);
+
+        if (!shipping) {
+            cart.setBillingAddress(addressObj);
+        } else {
+            cart.setShippingAddress(addressObj);
+        }
+
 
     }
     }
