@@ -11,13 +11,14 @@ export function generateModal(cartContent){
     const modal = document.createElement("div");
     const cartWrapper = document.createElement("div");
     const close = document.createElement("a");
-    const button = document.createElement("button");
+    const button = document.createElement("a");
 
     modal.classList.add("cart");
     cartWrapper.classList.add("cart-wrapper");
     close.innerText = "Close me";
     close.classList.add("close-cart-modal");
-    button.type = "button";
+    button.href = "/checkout";
+    button.classList.add("link-button");
     button.textContent = "Proceed to checkout";
 
     let cartHolder = `<div class='cart-content'>`;
