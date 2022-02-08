@@ -19,6 +19,7 @@ async function openModal(){
     document.querySelector("body").appendChild(modal);
     const closeCartLink = document.querySelector(".close-cart-modal");
     closeCartLink.addEventListener("click", listenToModalClose);
+    document.body.classList.add("scroll-prevent");
     setUpCartInputs();
 
 }
@@ -73,6 +74,7 @@ async function listenToModalClose(event){
 
     console.log(event.currentTarget);
     const cartModal = event.currentTarget.closest(".cart");
+    document.body.classList.remove("scroll-prevent");
     cartModal.remove();
 
 }
