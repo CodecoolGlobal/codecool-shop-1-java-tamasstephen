@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "JsonServletGet", urlPatterns = {"/api/getCart"}, loadOnStartup = 3)
+@WebServlet(name = "JsonServletGet", urlPatterns = {"/api/getCart", "/api/getProductCount"}, loadOnStartup = 3)
 public class JsonServletGet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         Order cart = Order.getInstance();
-        String responseJson = cart.getCartContent();
+        String responseJson = handleResponse(request.getRequestURL().toString(), cart);
 
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
@@ -26,4 +26,17 @@ public class JsonServletGet extends HttpServlet {
         out.flush();
 
     }
+
+    private String handleResponse(String url, Order cart){
+
+        if (url.contains("getProductCount")){
+
+            return cart.getCartItemCount();
+
+        }
+
+        return cart.getCartContent();
+
+    }
+
 }

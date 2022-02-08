@@ -9,8 +9,11 @@ const dataHandler = {
     },
 
     async getCartContent(){
-        const response = await fetch("/api/getCart");
-        return await response.json();
+        return await this.apiGet("/api/getCart");
+    },
+
+    async getProductCount(){
+        return await this.apiGet("/api/getProductCount");
     },
 
     async apiPost(url, payload){
@@ -19,6 +22,11 @@ const dataHandler = {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(payload)
         })
+        return await response.json();
+    },
+
+    async apiGet(url){
+        const response = await fetch(url);
         return await response.json();
     }
 }

@@ -9,13 +9,15 @@ export function updateCartTooltip(amount){
 export function generateModal(cartContent){
 
     const modal = document.createElement("div");
-    modal.classList.add("cart");
     const close = document.createElement("a");
+    const button = document.createElement("button");
+
+    modal.classList.add("cart");
     close.innerText = "Close me";
     close.classList.add("close-cart-modal");
-    const button = document.createElement("button");
     button.type = "button";
     button.textContent = "Proceed to checkout";
+
     let cartHolder = `<div class='cart-content'>`;
     let products = "<div class='cart-upper'>";
     let total = `<div class='cart-lower'>`;

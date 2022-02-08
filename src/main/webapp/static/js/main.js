@@ -1,11 +1,14 @@
 import { addProductToCart } from "./controller/listen.js";
 import { openModal } from "./controller/listen.js";
+import {updateCartTooltip} from "./view/view.js";
+import {dataHandler} from "./data/dataHandler.js";
 
 init();
 
-function init(){
+async function init(){
     setUpProductButtons();
     setUpCartButton();
+    updateCartTooltip(await dataHandler.getProductCount());
 }
 
 function setUpProductButtons(fnc){

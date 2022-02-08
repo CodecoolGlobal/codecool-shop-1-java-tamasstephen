@@ -42,7 +42,16 @@ async function listenToCartChanges(event){
         prod["id"] = itemId;
         prod["amount"] = amount;
         const cartProductCount = await dataHandler.upDateOrder(prod);
-        updateCartTooltip(Number(cartProductCount));
+
+        if (amount === "0"){
+
+           const cart = document.querySelector(".cart");
+           const productDiv = cart.querySelector(`div[data-id="${itemId}"]`);
+           productDiv.remove();
+
+        }
+
+        updateCartTooltip(cartProductCount);
 
     }
 
