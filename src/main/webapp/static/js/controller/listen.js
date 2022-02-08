@@ -78,3 +78,7 @@ async function listenToModalClose(event){
     cartModal.remove();
 
 }
+
+function listenToCheckoutClick(){
+    console.log("move to my brand new page");
+}

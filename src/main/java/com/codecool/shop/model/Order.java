@@ -60,7 +60,14 @@ public class Order {
     }
 
     public void updateProduct(Integer id, int amount){
+
         cart.put(id, amount);
+
+        if (cart.get(id).equals(0)){
+
+            cart.remove(id);
+
+        }
     }
 
     public String getCartContent(){
