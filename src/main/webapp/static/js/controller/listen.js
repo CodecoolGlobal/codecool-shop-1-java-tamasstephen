@@ -73,13 +73,8 @@ async function listenToCartChanges(event){
 
 async function listenToModalClose(event){
 
-    console.log(event.currentTarget);
     const cartModal = event.currentTarget.closest(".cart");
     document.body.classList.remove("scroll-prevent");
     cartModal.remove();
 
-}
-
-function listenToCheckoutClick(){
-    console.log("move to my brand new page");
 }

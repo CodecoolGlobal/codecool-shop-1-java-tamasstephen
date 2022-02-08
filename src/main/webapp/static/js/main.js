@@ -6,7 +6,6 @@ import {dataHandler} from "./data/dataHandler.js";
 init();
 
 async function init(){
-    console.log("it works");
     setUpProductButtons();
     setUpCartButton();
     updateCartTooltip(await dataHandler.getProductCount());
