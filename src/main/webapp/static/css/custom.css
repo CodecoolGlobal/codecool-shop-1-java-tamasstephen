@@ -157,3 +157,7 @@
     left: 0;
 }
 
+.not-visible {
+    display: none;
+}
+
