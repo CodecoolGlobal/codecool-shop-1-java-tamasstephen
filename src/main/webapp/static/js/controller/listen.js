@@ -14,12 +14,13 @@ async function addProductToCart(event){
 
 async function openModal(){
 
+    document.body.classList.add("scroll-prevent");
     const cartContent = await dataHandler.getCartContent();
     const modal = generateModal(cartContent);
     document.querySelector("body").appendChild(modal);
+    modal.style.top = `${window.scrollY}px`;
     const closeCartLink = document.querySelector(".close-cart-modal");
     closeCartLink.addEventListener("click", listenToModalClose);
-    document.body.classList.add("scroll-prevent");
     setUpCartInputs();
 
 }
@@ -72,13 +73,8 @@ async function listenToCartChanges(event){
 
 async function listenToModalClose(event){
 
-    console.log(event.currentTarget);
     const cartModal = event.currentTarget.closest(".cart");
     document.body.classList.remove("scroll-prevent");
     cartModal.remove();
 
-}
-
-function listenToCheckoutClick(){
-    console.log("move to my brand new page");
 }

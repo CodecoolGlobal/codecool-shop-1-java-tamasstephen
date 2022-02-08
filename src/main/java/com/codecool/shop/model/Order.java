@@ -15,10 +15,15 @@ public class Order {
     private final Map<Integer, Integer> cart;
     private final ProductDao products;
     private static Order order;
+    private Customer customer;
+    private Address billingAddress;
+    private Address shippingAddress;
+    private boolean mustHaveShippingAddress;
 
     private Order(ProductDao products) {
         this.cart = new HashMap<>();
         this.products = products;
+        this.mustHaveShippingAddress = false;
     }
 
     public static Order getInstance(){
@@ -37,12 +42,27 @@ public class Order {
 
     }
 
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
+    public void setShippingAddress(Address shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public void setMustHaveShippingAddress(boolean mustHaveShippingAddress) {
+        this.mustHaveShippingAddress = mustHaveShippingAddress;
+    }
+
     private boolean hasProduct(Integer id){
         return cart.get(id) != null;
     }
 
     public void addProduct(Integer id){
-        System.out.println(id);
 
         if (hasProduct(id)){
 
@@ -55,7 +75,6 @@ public class Order {
 
         }
 
-        System.out.println(cart);
 
     }
 
@@ -75,10 +94,8 @@ public class Order {
         Gson gson = new Gson();
         List<CartProduct> cartProductList = new ArrayList<>();
 
-        System.out.println(cart);
 
         for (Integer id: cart.keySet()){
-            System.out.println(id);
 
             Product product = products.find(id);
             CartProduct cartProduct = new CartProduct(cart.get(id),
