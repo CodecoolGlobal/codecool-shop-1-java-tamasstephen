@@ -77,17 +77,32 @@ public class Order {
             cartProductList.add(cartProduct);
         }
 
+        BigDecimal sumValue = cartProductList.stream()
+                .map(CartProduct::getTotal)
+                .reduce(BigDecimal::add).orElse(null);
+        CartProduct sum = new CartProduct(1, 0, "total", "", null, sumValue);
+        cartProductList.add(sum);
+
         String cartJson = gson.toJson(cartProductList);
 
         return cartJson;
+    }
+
+    public String getCartItemCount(){
+        int cartItemCount = cart.values().stream().mapToInt(Integer::intValue).sum();
+        String gsonCount = new Gson().toJson(cartItemCount);
+        return gsonCount;
     }
 
     @Override
     public String toString(){
 
         StringBuilder content = new StringBuilder();
+
         for (Integer value: cart.keySet()){
+
             content.append(String.format("{%d : %d}", value, cart.get(value)));
+
         }
 
         return content.toString();

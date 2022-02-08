@@ -13,12 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.lang.reflect.Type;
-import java.util.List;
 
 @WebServlet(name = "JsonServlet", urlPatterns = {"/api/update", "/api/add", "/json"}, loadOnStartup = 2)
-public class JsonServlet extends HttpServlet {
+public class JsonServletPost extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -43,31 +41,55 @@ public class JsonServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BufferedReader reader = request.getReader();
+
         String url = request.getRequestURL().toString();
         Order cart = Order.getInstance();
-        Type myType = new TypeToken<ProductRef>(){}.getType();
-        String value = "";
-        String line;
-        while ((line = reader.readLine()) != null){
-           value += line;
-        }
 
-        ProductRef skeleton = new Gson().fromJson(value, myType);
-        System.out.println(skeleton.getAmount());
-        if (url.contains("add")){
-            cart.addProduct(skeleton.getId());
-        } else if (url.contains("update")){
-            cart.updateProduct(skeleton.getId(), skeleton.getAmount());
-        }
-        System.out.println(cart.toString());
-        String responseJson = cart.getCartContent();
+        ProductRef skeleton = getProductRefFromRequest(request);
+        String responseJson = handleCartTransaction(url, cart, skeleton);
 
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         out.println(responseJson);
         out.flush();
+    }
+
+    private String handleCartTransaction(String url, Order cart, ProductRef skeleton){
+
+        String cartContent = "";
+
+        if (url.contains("add")){
+
+            cart.addProduct(skeleton.getId());
+            cartContent = cart.getCartItemCount();
+
+        } else if (url.contains("update")){
+
+            cart.updateProduct(skeleton.getId(), skeleton.getAmount());
+            cartContent = cart.getCartContent();
+
+        }
+
+        return cartContent;
+
+    }
+
+    private ProductRef getProductRefFromRequest(HttpServletRequest request) throws  IOException{
+
+        BufferedReader reader = request.getReader();
+        Type myType = new TypeToken<ProductRef>(){}.getType();
+        String value = "";
+        String line;
+
+        while ((line = reader.readLine()) != null){
+
+            value += line;
+
+        }
+
+        ProductRef skeleton = new Gson().fromJson(value, myType);
+        return skeleton;
     }
 
 }

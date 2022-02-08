@@ -20,6 +20,10 @@ public class CartProduct {
         this.totalPrice = totalPrice;
     }
 
+    public BigDecimal getTotal(){
+        return totalPrice;
+    }
+
 
 
 }
