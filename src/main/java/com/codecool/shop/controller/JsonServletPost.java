@@ -38,21 +38,18 @@ public class JsonServletPost extends HttpServlet {
 
     private String handleCartTransaction(String url, Order cart, ProductRef skeleton){
 
-        String cartContent = "";
 
         if (url.contains("add")){
 
             cart.addProduct(skeleton.getId());
-            cartContent = cart.getCartItemCount();
 
         } else if (url.contains("update")){
 
             cart.updateProduct(skeleton.getId(), skeleton.getAmount());
-            cartContent = cart.getCartContent();
 
         }
 
-        return cartContent;
+        return cart.getCartItemCount();
 
     }
 

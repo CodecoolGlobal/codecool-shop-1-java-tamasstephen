@@ -42,6 +42,7 @@ public class Order {
     }
 
     public void addProduct(Integer id){
+        System.out.println(id);
 
         if (hasProduct(id)){
 
@@ -54,6 +55,8 @@ public class Order {
 
         }
 
+        System.out.println(cart);
+
     }
 
     public void updateProduct(Integer id, int amount){
@@ -65,7 +68,10 @@ public class Order {
         Gson gson = new Gson();
         List<CartProduct> cartProductList = new ArrayList<>();
 
+        System.out.println(cart);
+
         for (Integer id: cart.keySet()){
+            System.out.println(id);
 
             Product product = products.find(id);
             CartProduct cartProduct = new CartProduct(cart.get(id),

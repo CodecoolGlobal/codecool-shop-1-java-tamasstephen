@@ -17,24 +17,36 @@ async function openModal(){
     const cartContent = await dataHandler.getCartContent();
     const modal = generateModal(cartContent);
     document.querySelector("body").appendChild(modal);
-
-    // listen to modal close
-
     const closeCartLink = document.querySelector(".close-cart-modal");
     closeCartLink.addEventListener("click", listenToModalClose);
+    setUpCartInputs();
 
+}
 
-   // listen to cartChanges
+function setUpCartInputs(){
+
+    const cart = document.querySelector(".cart");
+    const inputFields = cart.querySelectorAll("input");
+    inputFields.forEach(input => input.addEventListener("input", listenToCartChanges));
 
 }
 
 async function listenToCartChanges(event){
 
-    console.log(event.currentTarget);
+    const itemId = event.currentTarget.dataset.id;
+    const amount = event.currentTarget.value;
+
+    if (amount !== ""){
+
+        const prod = {};
+        prod["id"] = itemId;
+        prod["amount"] = amount;
+        const cartProductCount = await dataHandler.upDateOrder(prod);
+        updateCartTooltip(Number(cartProductCount));
+
+    }
 
 }
-
-// listen to cart modal close
 
 async function listenToModalClose(event){
 
