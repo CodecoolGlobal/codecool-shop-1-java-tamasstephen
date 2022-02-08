@@ -70,8 +70,8 @@
         <div id="products" class="row">
 
             <div class="col col-sm-12 col-md-6 col-lg-4" th:each="prod,iterStat : ${products}">
-                <div class="card">
-                    <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src='/static/img/product_' + ${prod.id} + '.jpg'" alt="" />
+                <div class="card"  th:attr="data-id=${prod.id}">
+                    <img class="" src="http://placehold.it/400x250/000/fff" th:attr="src=${prod.getImgUrl()}" alt="" />
                     <div class="card-header">
                         <h4 class="card-title" th:text="${prod.name}">Product name</h4>
                         <p class="card-text" th:text="${prod.description}">Product description... </p>
@@ -81,7 +81,7 @@
                             <p class="lead" th:text="${prod.getPrice()}">100 USD</p>
                         </div>
                         <div class="card-text">
-                            <a class="btn btn-success" href="#">Add to cart</a>
+                            <a class="btn btn-success add-to-cart">Add to cart</a>
                         </div>
                     </div>
                 </div>

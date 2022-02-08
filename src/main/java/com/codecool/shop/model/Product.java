@@ -9,6 +9,7 @@ public class Product extends BaseModel {
     private Currency defaultCurrency;
     private ProductCategory productCategory;
     private Supplier supplier;
+    private String imgUrl;
 
 
     public Product(String name, BigDecimal defaultPrice, String currencyString, String description, ProductCategory productCategory, Supplier supplier) {
@@ -18,8 +19,16 @@ public class Product extends BaseModel {
         this.setProductCategory(productCategory);
     }
 
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
     public BigDecimal getDefaultPrice() {
         return defaultPrice;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public void setDefaultPrice(BigDecimal defaultPrice) {
