@@ -13,6 +13,9 @@ export function generateModal(cartContent){
     const close = document.createElement("a");
     close.innerText = "Close me";
     close.classList.add("close-cart-modal");
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "Proceed to checkout";
     let cartHolder = `<div class='cart-content'>`;
     let products = "<div class='cart-upper'>";
     let total = `<div class='cart-lower'>`;
@@ -41,6 +44,8 @@ export function generateModal(cartContent){
     cartHolder += `</div>`;
     modal.innerHTML = cartHolder;
     modal.insertAdjacentElement("afterbegin", close);
+    modal.appendChild(button);
+
     return modal;
 
 }
