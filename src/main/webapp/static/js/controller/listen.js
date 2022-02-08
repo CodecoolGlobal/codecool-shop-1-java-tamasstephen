@@ -38,16 +38,28 @@ async function listenToCartChanges(event){
 
     if (amount !== ""){
 
+        const cart = document.querySelector(".cart");
+        const productDiv = cart.querySelector(`div[data-id="${itemId}"]`);
         const prod = {};
         prod["id"] = itemId;
         prod["amount"] = amount;
         const cartProductCount = await dataHandler.upDateOrder(prod);
+        const cartContent = await dataHandler.getCartContent();
+        const total = cartContent.filter(product => product["id"] === 0);
+
+        //TODO: kind of view thing
+        cart.querySelector(".cart-total").textContent = total[0]["totalPrice"];
 
         if (amount === "0"){
 
-           const cart = document.querySelector(".cart");
-           const productDiv = cart.querySelector(`div[data-id="${itemId}"]`);
            productDiv.remove();
+
+        } else {
+
+           const product = cartContent.filter(product => product["id"] === Number(itemId));
+
+           //TODO: kind of view thing
+           productDiv.querySelector(".product-total").textContent = product[0]["totalPrice"];
 
         }
 

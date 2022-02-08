@@ -28,7 +28,7 @@ export function generateModal(cartContent){
                             <p>${obj.name}</p>
                             <p>${obj.unitPrice}</p> 
                             <input class="item-amount" data-id="${obj.id}" type="number" value="${obj.amount}"> 
-                            <p>${obj.totalPrice}</p>
+                            <p class="product-total">${obj.totalPrice}</p>
                             </div>`
             products += div;
         } else {
