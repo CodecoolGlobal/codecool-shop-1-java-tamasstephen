@@ -9,10 +9,12 @@ export function updateCartTooltip(amount){
 export function generateModal(cartContent){
 
     const modal = document.createElement("div");
+    const cartWrapper = document.createElement("div");
     const close = document.createElement("a");
     const button = document.createElement("button");
 
     modal.classList.add("cart");
+    cartWrapper.classList.add("cart-wrapper");
     close.innerText = "Close me";
     close.classList.add("close-cart-modal");
     button.type = "button";
@@ -44,7 +46,8 @@ export function generateModal(cartContent){
     products += total;
     cartHolder += products;
     cartHolder += `</div>`;
-    modal.innerHTML = cartHolder;
+    cartWrapper.innerHTML = cartHolder;
+    modal.appendChild(cartWrapper);
     modal.insertAdjacentElement("afterbegin", close);
     modal.appendChild(button);
 
