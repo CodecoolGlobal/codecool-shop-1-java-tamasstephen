@@ -15,10 +15,15 @@ public class Order {
     private final Map<Integer, Integer> cart;
     private final ProductDao products;
     private static Order order;
+    private Customer customer;
+    private Address billingAddress;
+    private Address shippingAddress;
+    private boolean mustHaveShippingAddress;
 
     private Order(ProductDao products) {
         this.cart = new HashMap<>();
         this.products = products;
+        this.mustHaveShippingAddress = false;
     }
 
     public static Order getInstance(){
@@ -35,6 +40,22 @@ public class Order {
 
         return order;
 
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
+    public void setShippingAddress(Address shippingAddress) {
+        this.shippingAddress = shippingAddress;
+    }
+
+    public void setMustHaveShippingAddress(boolean mustHaveShippingAddress) {
+        this.mustHaveShippingAddress = mustHaveShippingAddress;
     }
 
     private boolean hasProduct(Integer id){
