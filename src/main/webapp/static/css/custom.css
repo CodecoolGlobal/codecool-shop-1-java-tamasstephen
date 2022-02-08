@@ -1,3 +1,9 @@
+:root {
+    --color-cart-tooltip-background: steelblue;
+    --color-dark-text: black;
+    --color-light-text: white;
+}
+
 .glyphicon {
     margin-right: 5px;
 }
@@ -57,6 +63,7 @@
 .list-group-item-text {
     margin: 0 0 11px;
 }
+
 
 .categories {
     display: flex;
@@ -125,4 +132,11 @@
     border-color: #008296;
     box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
     outline: 0;
+
+#cart-tooltip {
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--color-cart-tooltip-background);
+    color: var(--color-light-text);
+
 }
