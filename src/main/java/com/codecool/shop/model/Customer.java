@@ -2,9 +2,9 @@ package com.codecool.shop.model;
 
 public class Customer {
 
-    private String name;
-    private String phone;
-    private String email;
+    private final String name;
+    private final String phone;
+    private final String email;
 
     public Customer(String name, String phone, String email) {
         this.name = name;
