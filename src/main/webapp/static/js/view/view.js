@@ -5,24 +5,20 @@ export function updateCartTooltip(amount){
 
 }
 
-export function createCartModal(cartContent){
 
-    function generateModal(){
+export function generateModal(cartContent){
 
-        const modal = document.createElement("div");
-        modal.classList.add("cart");
-        let products = "";
+    const modal = document.createElement("div");
+    modal.classList.add("cart");
+    let products = "";
 
-        for (const key in cartContent){
-            const div = `<div>${key}: ${cartContent[key]}</div>`
-            products += div;
-        }
-
-        modal.innerHTML = products;
-        return modal;
-
+    for (const key in cartContent){
+        const div = `<div>${key}: ${cartContent[key]}</div>`
+        products += div;
     }
 
-    return generateModal;
+    modal.innerHTML = products;
+    return modal;
 
 }
+

@@ -8,6 +8,11 @@ const dataHandler = {
         return await this.apiPost(`/api/add`, product);
     },
 
+    async getCartContent(){
+        const response = await fetch("/api/getCart");
+        return await response.json();
+    },
+
     async apiPost(url, payload){
         const response = await fetch(url, {
             method: "POST",

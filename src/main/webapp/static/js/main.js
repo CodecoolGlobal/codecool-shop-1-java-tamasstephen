@@ -1,28 +1,21 @@
-import { setUpListenerWithCart } from "./controller/listen.js";
-import { Cart } from "./model/cart.js";
-import {createCartModal} from "./view/view.js";
-import { setUpModalOpener } from "./controller/listen.js";
+import { addProductToCart } from "./controller/listen.js";
+import { openModal } from "./controller/listen.js";
 
 init();
 
 function init(){
-    const cart = new Cart();
-    const listener = setUpListenerWithCart(cart);
-    setUpProductButtons(listener);
-    cart.initCartFromLocalStorage();
-    setUpCartButton(cart);
+    setUpProductButtons();
+    setUpCartButton();
 }
 
 function setUpProductButtons(fnc){
     const buttons = document.querySelectorAll(".add-to-cart");
-    buttons.forEach(button => button.addEventListener("click", fnc));
+    buttons.forEach(button => button.addEventListener("click", addProductToCart));
 }
 
-function setUpCartButton(cart){
+function setUpCartButton(){
     const cartButton = document.querySelector("#cart");
-    const modalCreator = createCartModal(cart.getCart());
-    const listener = setUpModalOpener(cart, modalCreator);
-    cartButton.addEventListener("click", listener);
+    cartButton.addEventListener("click", openModal);
 }
 
 
