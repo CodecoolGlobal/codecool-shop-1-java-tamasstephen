@@ -17,6 +17,7 @@ async function addProductToCart(event){
 async function openModal(){
 
     const cart = await dataHandler.getCartContent();
+    console.log(cart);
     const modal = generateModal(cart);
     document.querySelector("body").appendChild(modal);
 

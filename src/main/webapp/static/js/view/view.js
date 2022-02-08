@@ -10,14 +10,33 @@ export function generateModal(cartContent){
 
     const modal = document.createElement("div");
     modal.classList.add("cart");
-    let products = "";
+    let cartHolder = `<div class='cart-content'>`;
+    let products = "<div class='cart-upper'>";
+    let total = `<div class='cart-lower'>`;
 
-    for (const key in cartContent){
-        const div = `<div>${key}: ${cartContent[key]}</div>`
-        products += div;
+    for (const obj of cartContent){
+        if (obj.id !== 0){
+            const div = `<div class="cart-item" data-id="${obj.id}">
+                            <p>${obj.name}</p>
+                            <p>${obj.unitPrice}</p> 
+                            <input class="item-amount" data-id="${obj.id}" type="number" value="${obj.amount}"> 
+                            <p>${obj.totalPrice}</p>
+                            </div>`
+            products += div;
+        } else {
+            total += `<div class="cart-total">
+                        <p class="total-label">Total:</p>
+                        <p class="total-amount">${obj.totalPrice}</p>
+                        </div>`
+        }
     }
 
-    modal.innerHTML = products;
+    products += `</div>`;
+    total += `</div>`;
+    products += total;
+    cartHolder += products;
+    cartHolder += `</div>`;
+    modal.innerHTML = cartHolder;
     return modal;
 
 }
