@@ -14,12 +14,13 @@ async function addProductToCart(event){
 
 async function openModal(){
 
+    document.body.classList.add("scroll-prevent");
     const cartContent = await dataHandler.getCartContent();
     const modal = generateModal(cartContent);
     document.querySelector("body").appendChild(modal);
+    modal.style.top = `${window.scrollY}px`;
     const closeCartLink = document.querySelector(".close-cart-modal");
     closeCartLink.addEventListener("click", listenToModalClose);
-    document.body.classList.add("scroll-prevent");
     setUpCartInputs();
 
 }
