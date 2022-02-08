@@ -44,6 +44,7 @@ public class Order {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+        System.out.println(this.customer.getName());
     }
 
     public void setBillingAddress(Address billingAddress) {
