@@ -61,10 +61,13 @@ public class JsonServlet extends HttpServlet {
             cart.updateProduct(skeleton.getId(), skeleton.getAmount());
         }
         System.out.println(cart.toString());
+        String responseJson = cart.getCartContent();
 
-
-
-        doGet(request, response);
+        PrintWriter out = response.getWriter();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        out.println(responseJson);
+        out.flush();
     }
 
 }

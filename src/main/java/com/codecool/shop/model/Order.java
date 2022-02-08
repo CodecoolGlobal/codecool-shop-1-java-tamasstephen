@@ -3,7 +3,11 @@ package com.codecool.shop.model;
 import com.codecool.shop.dao.ProductDao;
 import com.google.gson.Gson;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Order {
@@ -56,18 +60,26 @@ public class Order {
         cart.put(id, amount);
     }
 
-    public Product getProductById(String id){
+    public String getCartContent(){
 
-        int idAsInt = Integer.parseInt(id);
-        return products.find(idAsInt);
+        Gson gson = new Gson();
+        List<CartProduct> cartProductList = new ArrayList<>();
 
-    }
+        for (Integer id: cart.keySet()){
 
-    public Gson getCartContent(){
+            Product product = products.find(id);
+            CartProduct cartProduct = new CartProduct(cart.get(id),
+                    id,
+                    product.getName(),
+                    product.getDescription(),
+                    product.getDefaultPrice(),
+                    product.getDefaultPrice().multiply(new BigDecimal(cart.get(id)), MathContext.UNLIMITED));
+            cartProductList.add(cartProduct);
+        }
 
-        // TODO: create a productCartModel -> just the final values (unit price, sub-total, name, description, id)
+        String cartJson = gson.toJson(cartProductList);
 
-        return null;
+        return cartJson;
     }
 
     @Override

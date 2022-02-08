@@ -6,11 +6,12 @@ export { setUpListenerWithCart, setUpModalOpener }
 
 function setUpListenerWithCart(cart){
 
-    function addProductToCart(event){
+    async function addProductToCart(event){
         const productId = event.currentTarget.closest(".card").dataset.id;
         addItemToCart(productId);
         cart.addOneMoreItemToCart(productId);
-        dataHandler.addOneMoreItemToCart({"id": productId});
+        const response = await dataHandler.addOneMoreItemToCart({"id": productId});
+        console.log(response);
     }
 
     return addProductToCart;
