@@ -85,6 +85,7 @@ nav {
     flex-direction: column;
     padding-right: 2rem;
 }
+
 .content {
     display: flex;
     flex-direction: row;
@@ -98,24 +99,29 @@ nav {
     border-style: groove;
 }
 
+.current-filter {
+    max-width: 40%;
+}
+
 .category {
     color: white;
     background-color: black;
     display: inline-block;
     border: 0 none;
 }
-.supplier{
-    color:#444;
-    border:1px solid #CCC;
-    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
-    cursor:pointer;
-    vertical-align:middle;
+
+.supplier {
+    color: #444;
+    border: 1px solid #CCC;
+    box-shadow: 0 0 5px -1px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    vertical-align: middle;
     padding: 0.5rem;
     text-align: center;
 }
 
 
-.category{
+.category {
     margin: 1rem;
     border-radius: 0.5rem;
     box-sizing: border-box;

@@ -16,20 +16,20 @@ export function renderProducts(products) {
         outerDiv.classList.add("col-md-6");
         outerDiv.classList.add("col-lg-4");
         outerDiv.innerHTML = `<div class="card"  data-id="${product.id}">
-                    <img class=""   src="${product.imgLink}" alt=""/>
-                    <div class="card-header">
-                        <h4 class="card-title" >${product.name}</h4>
-                        <p class="card-text" >${product.description}</p>
+                <img class=""   src="${product.imgLink}" alt=""/>
+                <div class="card-header">
+                    <h4 class="card-title" >${product.name}</h4>
+                    <p class="card-text" >${product.description}</p>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <p class="lead" >${product.totalPrice}</p>
                     </div>
-                    <div class="card-body">
-                        <div class="card-text">
-                            <p class="lead" >${product.totalPrice}</p>
-                        </div>
-                        <div class="card-text">
-                            <a class="btn btn-success add-to-cart">Add to cart</a>
-                        </div>
+                    <div class="card-text">
+                        <a class="btn btn-success add-to-cart">Add to cart</a>
                     </div>
-                </div>`;
+                </div>
+            </div>`;
         contentDiv.appendChild(outerDiv);
     }
 }

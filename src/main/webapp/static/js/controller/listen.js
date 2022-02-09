@@ -81,23 +81,45 @@ async function listenToModalClose(event){
 function filterBySupplier(){
     const buttons = document.querySelectorAll(".supplier");
     buttons.forEach(button => button.addEventListener("click", async (event) => {
-        // localStorage.clear();
-        localStorage.setItem("supplier", event.currentTarget.getAttribute("supplier-name"));
+        const supplierName = event.currentTarget.getAttribute("supplier-name");
+        localStorage.setItem("supplier", supplierName);
         const products = await dataHandler.getProductBySupplier(event.currentTarget.getAttribute('supplier-id'));
         removeContents();
+        changeSupplierPosition(supplierName);
+        deleteSupplierFilter();
         renderProducts(products);
 
     }))
 }
 
+function changeSupplierPosition(supplierName){
+    const currentSupplierDiv = document.querySelector('.current-filter');
+    currentSupplierDiv.innerHTML = `<div class="supplier current-supplier">
+                     <span style="padding-left: 0.2rem">${supplierName}</span>
+                    <i style="font-size:24px" class="fa close-btn">&#xf00d;</i> </div>`;
+}
+
+function deleteSupplierFilter(){
+    const currentSupplier = document.querySelector('.current-supplier');
+    const closeButton = document.querySelector(".close-btn");
+    closeButton.addEventListener('click', (event) => {
+        currentSupplier.remove();
+    });
+}
+
+
+
 function filterByCategory(){
     const buttons = document.querySelectorAll(".category");
     buttons.forEach(button => button.addEventListener("click", async (event) => {
-        // localStorage.clear();
         localStorage.setItem("category", event.currentTarget.innerText);
         const products = await dataHandler.getProductsByCategory(event.currentTarget.getAttribute('category-id'));
-        removeContents();
-        renderProducts(products);
+            if(products.length === 0){
+                alert("We dont have product in this category");
+            } else{
+                removeContents();
+                renderProducts(products);
+            }
     }
     ))
 }
