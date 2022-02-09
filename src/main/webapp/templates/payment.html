@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PayME</title>
+</head>
+<body>
+<div th:replace="plainheader.html :: plain-nav"></div>
+<main class="payment-container">
+    <div class="payment-type">
+
+        <div id="payment-method">
+            <h3>Payment Method</h3>
+            <form action="">
+                <input type="checkbox" id="paypal"><label for="paypal"></label>
+                <input type="checkbox" id="credit-card"><label for="credit-card"></label>
+            </form>
+        </div>
+
+        <div class="paypal-payment">
+            <h3>Payment</h3>
+            <form action="">
+                <label for="email"></label>
+                <input type="text" id="email" name="email">
+                <label for="password"></label>
+                <input type="password" id="password" name="email">
+            </form>
+
+        </div>
+
+        <div class="credit-card-payment">
+            <h3>Payment</h3>
+
+            <p>I'm a placeholder</p>
+
+        </div>
+
+
+    </div>
+    <div class="cart-products">
+        <p>The future of the products -> omg so sweet</p>
+    </div>
+</main>
+
+<div th:replace="footer.html :: copy"></div>
+</body>
+</html>
