@@ -34,8 +34,12 @@ public class PaymentController extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+
         TemplateEngine engine = TemplateEngineUtil.getTemplateEngine(request.getServletContext());
         WebContext context = new WebContext(request, response, request.getServletContext());
+
+        Order order = Order.getInstance();
+        order.clearOrder();
         engine.process("success.html", context, response.getWriter());
     }
 }

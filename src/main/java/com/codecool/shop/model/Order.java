@@ -154,6 +154,16 @@ public class Order {
         return gsonCount;
     }
 
+    public void clearOrder(){
+
+        cart.clear();
+        customer = null;
+        billingAddress = null;
+        shippingAddress = null;
+        mustHaveShippingAddress = false;
+
+    }
+
     @Override
     public String toString(){
 
