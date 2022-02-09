@@ -42,6 +42,22 @@ public class Order {
 
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Address getBillingAddress() {
+        return billingAddress;
+    }
+
+    public Address getShippingAddress() {
+        return shippingAddress;
+    }
+
+    public boolean isMustHaveShippingAddress() {
+        return mustHaveShippingAddress;
+    }
+
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }
