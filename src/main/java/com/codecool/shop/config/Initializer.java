@@ -37,12 +37,12 @@ public class Initializer implements ServletContextListener {
         supplierDataStore.add(lenovo);
 
         //setting up a new product category
-        ProductCategory tablet = new ProductCategory("tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
-        ProductCategory kiskutya = new ProductCategory("kiskutya", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
-        ProductCategory kiscica = new ProductCategory("kiscica", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
+        ProductCategory tablet = new ProductCategory("just useless", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
+        ProductCategory kiskutya = new ProductCategory("very useless", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
+        ProductCategory kiscica = new ProductCategory("absolute useless", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
         productCategoryDataStore.add(tablet);
-        productCategoryDataStore.add(kiscica);
         productCategoryDataStore.add(kiskutya);
+        productCategoryDataStore.add(kiscica);
 
         //setting up products and printing it
         addDummyProducts(productDataStore, productCategoryDataStore, supplierDataStore);

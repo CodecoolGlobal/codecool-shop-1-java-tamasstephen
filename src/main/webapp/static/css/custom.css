@@ -139,11 +139,16 @@ nav {
     color: var(--color-font-black);
     background-color: transparent;
     display: inline-block;
-    margin: .5rem;
+    margin:.5rem 1.5rem;
     box-sizing: border-box;
     cursor: pointer;
     user-select: none;
     text-transform: capitalize;
+}
+
+.category:hover {
+    color: var(--color-gray-dark);
+    transition-duration: .2ms;
 }
 
 
@@ -157,6 +162,11 @@ nav {
     height: 100%;
     width: 100%;
     overflow: hidden;
+}
+
+div.card-body.footer {
+    display: flex;
+    justify-content: center;
 }
 
 #cart {
