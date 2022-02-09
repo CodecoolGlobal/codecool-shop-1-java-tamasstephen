@@ -1,5 +1,5 @@
 import {dataHandler} from "../data/dataHandler.js";
-import {generateModal, updateCartTooltip, renderProducts} from "../view/view.js";
+import {generateModal, updateCartTooltip, renderProducts, deleteSupplierFilter, changeSupplierPosition} from "../view/view.js";
 
 export { addProductToCart, openModal, filterByCategory, filterBySupplier, addEventOnLogo}
 
@@ -90,28 +90,16 @@ function filterBySupplier(){
         } else {
             products = await dataHandler.getProductsByTwoParameter(localStorage.getItem("categoryId"), supplierId);
         }
-        removeContents();
-        changeSupplierPosition(supplierName);
-        deleteSupplierFilter();
-        renderProducts(products);
+        if(products.length === 0){
+            alert("We dont have product in this category");
+        } else{
+            removeContents();
+            changeSupplierPosition(supplierName);
+            deleteSupplierFilter();
+            renderProducts(products);
+        }
 
     }))
-}
-
-function changeSupplierPosition(supplierName){
-    const currentSupplierDiv = document.querySelector('.current-filter');
-    currentSupplierDiv.innerHTML = `<div class="supplier current-supplier">
-                     <span style="padding-left: 0.2rem">${supplierName}</span>
-                    <i style="font-size:24px" class="fa close-btn">&#xf00d;</i> </div>`;
-}
-
-function deleteSupplierFilter(){
-    const currentSupplier = document.querySelector('.current-supplier');
-    const closeButton = document.querySelector(".close-btn");
-    closeButton.addEventListener('click', () => {
-        localStorage.removeItem("supplierId");
-        currentSupplier.remove();
-    });
 }
 
 function addEventOnLogo(){
