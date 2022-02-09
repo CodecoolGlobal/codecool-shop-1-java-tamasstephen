@@ -45,10 +45,10 @@
         <div class="logo"><h1>CoolTourShop</h1></div>
         <div class="menu">
             <div th:each="category: ${categories}">
-                <span class="category" th:text="${category.name.toUpperCase()}">Category Title</span>
+                <span class="category" th:category-id="${category.getId()}" th:text="${category.name.toUpperCase()}">Category Title</span>
             </div>
         </div>
-        <div class="category">
+        <div class="category cart">
             <div id="cart">
                 <i style='font-size:24px' class='fas'>&#xf07a;</i>
                 <div id="cart-tooltip"></div>

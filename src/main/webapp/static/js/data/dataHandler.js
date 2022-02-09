@@ -16,6 +16,10 @@ const dataHandler = {
         return await this.apiGet("/api/getProductCount");
     },
 
+    async getProductsByCategory(categoryId){
+      return await this.apiGet(`/api/category?categoryId=${categoryId}`);
+    },
+
     async apiPost(url, payload){
         const response = await fetch(url, {
             method: "POST",
