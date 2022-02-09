@@ -67,7 +67,7 @@ public class Initializer implements ServletContextListener {
         int supplierRange = supplierDao.getAll().size() + 1;
         List<String> dummyItems = List.of("Amazon Fire", "Lenovo Ideapad Miix 700", "Amazon Fire HD 8", "LoveBox", "HyperGameLink", "OMG Converter", "Voice Mutator", "Swipe Refresher");
         List<String> dummyImages = List.of("/static/img/product_1.jpg", "/static/img/product_2.jpg", "/static/img/product_3.jpg");
-        List<BigDecimal> dummyPrice = List.of(new BigDecimal("49.9"), new BigDecimal("89"), new BigDecimal("89"));
+        List<BigDecimal> dummyPrice = List.of(new BigDecimal("49.9"), new BigDecimal("89"), new BigDecimal("144.9"));
         List<String> description = List.of(
                 "Amazon's latest Fire HD 8 tablet is a great value for media consumption.",
                 "Keyboard cover is included. Fanless Core m5 processor. Full-size USB ports. Adjustable kickstand.",
