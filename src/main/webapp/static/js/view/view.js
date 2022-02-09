@@ -5,6 +5,33 @@ export function updateCartTooltip(amount){
 
 }
 
+export function renderProducts(products) {
+    const contentDiv = document.querySelector("#products");
+    for(let product of products){
+        let outerDiv = document.createElement('div');
+        outerDiv.classList.add("col");
+        outerDiv.classList.add("col-sm-12");
+        outerDiv.classList.add("col-md-6");
+        outerDiv.classList.add("col-lg-4");
+        outerDiv.innerHTML = `<div class="card"  data-id="${product.id}">
+                    <img class=""   src="${product.imgLink}" alt=""/>
+                    <div class="card-header">
+                        <h4 class="card-title" >${product.name}</h4>
+                        <p class="card-text" >${product.description}</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <p class="lead" >${product.totalPrice}</p>
+                        </div>
+                        <div class="card-text">
+                            <a class="btn btn-success add-to-cart">Add to cart</a>
+                        </div>
+                    </div>
+                </div>`;
+        contentDiv.appendChild(outerDiv);
+    }
+}
+
 
 export function generateModal(cartContent){
 

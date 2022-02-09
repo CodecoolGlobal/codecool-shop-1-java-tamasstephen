@@ -1,7 +1,7 @@
 import {dataHandler} from "../data/dataHandler.js";
-import {generateModal, updateCartTooltip} from "../view/view.js";
+import {generateModal, updateCartTooltip, renderProducts} from "../view/view.js";
 
-export { addProductToCart, openModal }
+export { addProductToCart, openModal, filterByCategory}
 
 
 
@@ -77,4 +77,19 @@ async function listenToModalClose(event){
     document.body.classList.remove("scroll-prevent");
     cartModal.remove();
 
+}
+
+function filterByCategory(){
+    const buttons = document.querySelectorAll(".category");
+    buttons.forEach(button => button.addEventListener("click", async (event) => {
+        const products = await dataHandler.getProductsByCategory(event.currentTarget.getAttribute('category-id'));
+        removeContents();
+        renderProducts(products);
+    }
+    ))
+}
+
+function removeContents() {
+    const contentDivs = document.querySelectorAll("#products div");
+    contentDivs.forEach(contentDiv => contentDiv.remove());
 }

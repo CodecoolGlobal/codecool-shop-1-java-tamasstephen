@@ -45,7 +45,7 @@
         <div class="logo"><h1>UselessThings</h1></div>
         <div class="menu">
             <div th:each="category: ${categories}">
-                <span class="category" th:text="${category.name.toUpperCase()}">Category Title</span>
+                <span class="category" th:category-id="${category.getId()}" th:text="${category.name.toUpperCase()}">Category Title</span>
             </div>
         </div>
         <div class="category">
