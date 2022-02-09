@@ -1,5 +1,5 @@
 import {dataHandler} from "../data/dataHandler.js";
-import {generateModal, updateCartTooltip} from "../view/view.js";
+import {generateModal, updateCartTooltip, renderProducts} from "../view/view.js";
 
 export { addProductToCart, openModal, filterByCategory}
 
@@ -82,9 +82,7 @@ async function listenToModalClose(event){
 function filterByCategory(){
     const buttons = document.querySelectorAll(".category");
     buttons.forEach(button => button.addEventListener("click", async (event) => {
-        console.log(event.currentTarget.getAttribute('category-id'));
         const products = await dataHandler.getProductsByCategory(event.currentTarget.getAttribute('category-id'));
-        console.log(products);
         removeContents();
         renderProducts(products);
     }
@@ -95,34 +93,3 @@ function removeContents() {
     const contentDivs = document.querySelectorAll("#products div");
     contentDivs.forEach(contentDiv => contentDiv.remove());
 }
-
-function renderProducts(products) {
-    const contentDiv = document.querySelector("#products");
-    console.log(products)
-    for(let product of products){
-        console.log(product.imgLink)
-        let outerDiv = document.createElement('div');
-        outerDiv.classList.add("col");
-        outerDiv.classList.add("col-sm-12");
-        outerDiv.classList.add("col-md-6");
-        outerDiv.classList.add("col-lg-4");
-        outerDiv.innerHTML = `<div class="card"  data-id="${product.id}">
-                    <img class=""   src="${product.imgLink}" alt=""/>
-                    <div class="card-header">
-                        <h4 class="card-title" >${product.name}</h4>
-                        <p class="card-text" >${product.description}</p>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-text">
-                            <p class="lead" >${product.totalPrice}</p>
-                        </div>
-                        <div class="card-text">
-                            <a class="btn btn-success add-to-cart">Add to cart</a>
-                        </div>
-                    </div>
-                </div>`;
-        contentDiv.appendChild(outerDiv);
-    }
-}
-
-
