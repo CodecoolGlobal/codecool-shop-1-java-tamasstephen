@@ -1,5 +1,6 @@
 import { addProductToCart } from "./controller/listen.js";
 import { openModal } from "./controller/listen.js";
+import { filterByCategory } from "./controller/listen.js";
 import {updateCartTooltip} from "./view/view.js";
 import {dataHandler} from "./data/dataHandler.js";
 
@@ -9,6 +10,7 @@ async function init(){
     setUpProductButtons();
     setUpCartButton();
     updateCartTooltip(await dataHandler.getProductCount());
+    filterByCategory();
 }
 
 function setUpProductButtons(fnc){

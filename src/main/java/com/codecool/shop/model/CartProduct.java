@@ -10,6 +10,7 @@ public class CartProduct {
     private final String description;
     private final BigDecimal unitPrice;
     private final BigDecimal totalPrice;
+    private String imgLink;
 
     public CartProduct(int amount, int id, String name, String description, BigDecimal unitPrice, BigDecimal totalPrice) {
         this.amount = amount;
@@ -18,6 +19,10 @@ public class CartProduct {
         this.description = description;
         this.unitPrice = unitPrice;
         this.totalPrice = totalPrice;
+    }
+
+    public void setImgLink(String link){
+        this.imgLink = link;
     }
 
     public BigDecimal getTotal(){
