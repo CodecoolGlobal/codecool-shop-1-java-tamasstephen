@@ -125,6 +125,7 @@ public class Order {
                     product.getDescription(),
                     product.getDefaultPrice(),
                     product.getDefaultPrice().multiply(new BigDecimal(cart.get(id)), MathContext.UNLIMITED));
+            cartProduct.setImgLink(product.getImgUrl());
             cartProductList.add(cartProduct);
         }
 
