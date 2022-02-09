@@ -25,6 +25,14 @@ public class CartProduct {
         this.imgLink = link;
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     public BigDecimal getTotal(){
         return totalPrice;
     }

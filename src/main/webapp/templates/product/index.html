@@ -27,6 +27,10 @@
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- End of Bootstrap components -->
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
 
 
@@ -45,16 +49,15 @@
         <div class="logo"><h1>UselessThings</h1></div>
         <div class="menu">
             <div th:each="category: ${categories}">
-                <span class="category" th:category-id="${category.getId()}" th:text="${category.name.toUpperCase()}">Category Title</span>
+                <span class="category" th:category-id="${category.getId()}" th:text="${category.name}">Category Title</span>
             </div>
         </div>
-        <div class="category">
             <div id="cart">
                 <i style='font-size:24px' class='fas'>&#xf07a;</i>
                 <div id="cart-tooltip"></div>
             </div>
-        </div>
     </div>
+    <div class="motto"><div class="container">Buy useless</div></div>
 
 </nav>
 

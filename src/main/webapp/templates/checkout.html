@@ -4,8 +4,12 @@
     <meta charset="UTF-8">
     <title>Shipping details</title>
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+<div th:replace="plainheader.html :: plain-nav"></div>
 <main>
     <h1 class="form-title">Checkout</h1>
     <form action="/checkout" method="post">

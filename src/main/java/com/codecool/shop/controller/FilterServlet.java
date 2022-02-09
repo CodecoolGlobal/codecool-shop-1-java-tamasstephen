@@ -18,7 +18,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/api/category")
+@WebServlet(name = "FilterServlet", urlPatterns = "/api/category", loadOnStartup = 6)
 public class FilterServlet extends javax.servlet.http.HttpServlet {
 
     @Override
