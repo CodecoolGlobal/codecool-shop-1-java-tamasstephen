@@ -75,8 +75,7 @@ public class CheckoutController extends HttpServlet {
         } else {
             cart.setShippingAddress(addressObj);
         }
-
-
     }
+
     }
 
