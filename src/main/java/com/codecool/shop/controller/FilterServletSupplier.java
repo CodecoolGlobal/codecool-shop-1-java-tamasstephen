@@ -2,9 +2,11 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.CartProduct;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
+import com.codecool.shop.model.Supplier;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -18,19 +20,19 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/api/category")
-public class FilterServlet extends javax.servlet.http.HttpServlet {
-
+@WebServlet("/api/supplier")
+public class FilterServletSupplier extends javax.servlet.http.HttpServlet {
+    // TODO: 09/02/2022 uselessThings click clear local storage and list all items
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+        int categoryId = Integer.parseInt(request.getParameter("supplierId"));
 
-        ProductCategoryDaoMem productCategoryDaoMem = ProductCategoryDaoMem.getInstance();
+        SupplierDaoMem supplierDaoMem = SupplierDaoMem.getInstance();
         ProductDaoMem productDaoMem = ProductDaoMem.getInstance();
 
-        ProductCategory category = productCategoryDaoMem.find(categoryId);
+        Supplier supplier = supplierDaoMem.find(categoryId);
 
-        List<Product> products = productDaoMem.getBy(category);
+        List<Product> products = productDaoMem.getBy(supplier);
 
         List<CartProduct> cartProducts = new ArrayList<>();
 
@@ -38,7 +40,6 @@ public class FilterServlet extends javax.servlet.http.HttpServlet {
             CartProduct cartProduct = new CartProduct(1, product.getId(), product.getName(), product.getDescription(), product.getDefaultPrice(), product.getDefaultPrice());
             cartProduct.setImgLink(product.getImgUrl());
             cartProducts.add(cartProduct);
-
         }
 
         String json = new Gson().toJson(cartProducts);

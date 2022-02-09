@@ -1,7 +1,7 @@
 import {dataHandler} from "../data/dataHandler.js";
 import {generateModal, updateCartTooltip, renderProducts} from "../view/view.js";
 
-export { addProductToCart, openModal, filterByCategory}
+export { addProductToCart, openModal, filterByCategory, filterBySupplier}
 
 
 
@@ -10,7 +10,6 @@ async function addProductToCart(event){
     const response = await dataHandler.addOneMoreItemToCart({"id": productId});
     updateCartTooltip(response);
 }
-
 
 async function openModal(){
 
@@ -79,9 +78,23 @@ async function listenToModalClose(event){
 
 }
 
+function filterBySupplier(){
+    const buttons = document.querySelectorAll(".supplier");
+    buttons.forEach(button => button.addEventListener("click", async (event) => {
+        // localStorage.clear();
+        localStorage.setItem("supplier", event.currentTarget.getAttribute("supplier-name"));
+        const products = await dataHandler.getProductBySupplier(event.currentTarget.getAttribute('supplier-id'));
+        removeContents();
+        renderProducts(products);
+
+    }))
+}
+
 function filterByCategory(){
     const buttons = document.querySelectorAll(".category");
     buttons.forEach(button => button.addEventListener("click", async (event) => {
+        // localStorage.clear();
+        localStorage.setItem("category", event.currentTarget.innerText);
         const products = await dataHandler.getProductsByCategory(event.currentTarget.getAttribute('category-id'));
         removeContents();
         renderProducts(products);
