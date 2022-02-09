@@ -108,8 +108,22 @@ public class Order {
     public String getCartContent(){
 
         Gson gson = new Gson();
-        List<CartProduct> cartProductList = new ArrayList<>();
+        List<CartProduct> cartProductList = getCartProductObjects();
 
+        BigDecimal sumValue = cartProductList.stream()
+                .map(CartProduct::getTotal)
+                .reduce(BigDecimal::add).orElse(null);
+        CartProduct sum = new CartProduct(1, 0, "total", "", null, sumValue);
+        cartProductList.add(sum);
+
+        String cartJson = gson.toJson(cartProductList);
+
+        return cartJson;
+    }
+
+    public List<CartProduct> getCartProductObjects(){
+
+        List<CartProduct> cartProductList = new ArrayList<>();
 
         for (Integer id: cart.keySet()){
 
@@ -123,15 +137,7 @@ public class Order {
             cartProductList.add(cartProduct);
         }
 
-        BigDecimal sumValue = cartProductList.stream()
-                .map(CartProduct::getTotal)
-                .reduce(BigDecimal::add).orElse(null);
-        CartProduct sum = new CartProduct(1, 0, "total", "", null, sumValue);
-        cartProductList.add(sum);
-
-        String cartJson = gson.toJson(cartProductList);
-
-        return cartJson;
+        return cartProductList;
     }
 
     public String getCartItemCount(){
