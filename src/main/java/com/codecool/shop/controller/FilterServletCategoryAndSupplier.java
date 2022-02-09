@@ -2,9 +2,11 @@ package com.codecool.shop.controller;
 
 import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.CartProduct;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
+import com.codecool.shop.model.Supplier;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -16,17 +18,24 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/api/all-product")
+@WebServlet("/api/filter")
 public class FilterServletCategoryAndSupplier extends javax.servlet.http.HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        int supplierId = Integer.parseInt(request.getParameter("supplierId"));
 
+        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 
+        ProductCategoryDaoMem productCategoryDaoMem = ProductCategoryDaoMem.getInstance();
+        SupplierDaoMem supplierDaoMem = SupplierDaoMem.getInstance();
         ProductDaoMem productDaoMem = ProductDaoMem.getInstance();
 
 
-        List<Product> products = productDaoMem.getAll();
+        ProductCategory category = productCategoryDaoMem.find(categoryId);
+        Supplier supplier = supplierDaoMem.find(supplierId);
+
+        List<Product> products = productDaoMem.getBy(category, supplier);
 
         List<CartProduct> cartProducts = new ArrayList<>();
 

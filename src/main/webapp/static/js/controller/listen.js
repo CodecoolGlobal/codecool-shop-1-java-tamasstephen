@@ -82,7 +82,7 @@ function filterBySupplier(){
     const buttons = document.querySelectorAll(".supplier");
     buttons.forEach(button => button.addEventListener("click", async (event) => {
         const supplierName = event.currentTarget.getAttribute("supplier-name");
-        localStorage.setItem("supplier", supplierName);
+        // localStorage.setItem("asd", );
         const products = await dataHandler.getProductBySupplier(event.currentTarget.getAttribute('supplier-id'));
         removeContents();
         changeSupplierPosition(supplierName);

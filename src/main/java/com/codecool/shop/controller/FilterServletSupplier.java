@@ -25,12 +25,12 @@ public class FilterServletSupplier extends javax.servlet.http.HttpServlet {
     // TODO: 09/02/2022 uselessThings click clear local storage and list all items
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int categoryId = Integer.parseInt(request.getParameter("supplierId"));
+        int supplierId = Integer.parseInt(request.getParameter("supplierId"));
 
         SupplierDaoMem supplierDaoMem = SupplierDaoMem.getInstance();
         ProductDaoMem productDaoMem = ProductDaoMem.getInstance();
 
-        Supplier supplier = supplierDaoMem.find(categoryId);
+        Supplier supplier = supplierDaoMem.find(supplierId);
 
         List<Product> products = productDaoMem.getBy(supplier);
 
