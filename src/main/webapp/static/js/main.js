@@ -14,6 +14,7 @@ async function init(){
     filterByCategory();
     filterBySupplier();
     addEventOnLogo();
+    localStorage.clear();
 }
 
 function setUpProductButtons(fnc){

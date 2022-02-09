@@ -82,8 +82,14 @@ function filterBySupplier(){
     const buttons = document.querySelectorAll(".supplier");
     buttons.forEach(button => button.addEventListener("click", async (event) => {
         const supplierName = event.currentTarget.getAttribute("supplier-name");
-        // localStorage.setItem("asd", );
-        const products = await dataHandler.getProductBySupplier(event.currentTarget.getAttribute('supplier-id'));
+        const supplierId = event.currentTarget.getAttribute('supplier-id');
+        localStorage.setItem("supplierId", supplierId);
+        let products;
+        if(localStorage.getItem("supplierId") == null){
+            products = await dataHandler.getProductsByCategory(supplierId);
+        } else {
+            products = await dataHandler.getProductsByTwoParameter(localStorage.getItem("categoryId"), supplierId);
+        }
         removeContents();
         changeSupplierPosition(supplierName);
         deleteSupplierFilter();
@@ -103,6 +109,7 @@ function deleteSupplierFilter(){
     const currentSupplier = document.querySelector('.current-supplier');
     const closeButton = document.querySelector(".close-btn");
     closeButton.addEventListener('click', () => {
+        localStorage.removeItem("supplierId");
         currentSupplier.remove();
     });
 }
@@ -120,14 +127,21 @@ function addEventOnLogo(){
 function filterByCategory(){
     const buttons = document.querySelectorAll(".category");
     buttons.forEach(button => button.addEventListener("click", async (event) => {
-        localStorage.setItem("category", event.currentTarget.innerText);
-        const products = await dataHandler.getProductsByCategory(event.currentTarget.getAttribute('category-id'));
-            if(products.length === 0){
-                alert("We dont have product in this category");
-            } else{
-                removeContents();
-                renderProducts(products);
-            }
+        const categoryId = event.currentTarget.getAttribute('category-id');
+        localStorage.setItem("categoryId", categoryId);
+        let products;
+        if(localStorage.getItem("supplierId") == null){
+            products = await dataHandler.getProductsByCategory(categoryId);
+        } else {
+            products = await dataHandler.getProductsByTwoParameter(categoryId, localStorage.getItem("supplierId"));
+        }
+
+        if(products.length === 0){
+            alert("We dont have product in this category");
+        } else{
+            removeContents();
+            renderProducts(products);
+        }
     }
     ))
 }
