@@ -41,9 +41,7 @@ public class CheckoutController extends HttpServlet {
             saveAddressToOrder(false, request, cart);
         }
 
-        PrintWriter out = response.getWriter();
-        response.setCharacterEncoding("UTF-8");
-        out.flush();
+        response.sendRedirect(request.getContextPath() + "/payment");
     }
 
     // TODO: we need a class to handle the checkout process things -> 2. saving the data to order 1. validationg the values
