@@ -1,7 +1,7 @@
 import {dataHandler} from "../data/dataHandler.js";
 import {generateModal, updateCartTooltip, renderProducts} from "../view/view.js";
 
-export { addProductToCart, openModal, filterByCategory, filterBySupplier}
+export { addProductToCart, openModal, filterByCategory, filterBySupplier, addEventOnLogo}
 
 
 
@@ -102,11 +102,19 @@ function changeSupplierPosition(supplierName){
 function deleteSupplierFilter(){
     const currentSupplier = document.querySelector('.current-supplier');
     const closeButton = document.querySelector(".close-btn");
-    closeButton.addEventListener('click', (event) => {
+    closeButton.addEventListener('click', () => {
         currentSupplier.remove();
     });
 }
 
+function addEventOnLogo(){
+    const logo = document.querySelector('.logo');
+    logo.addEventListener('click', async () => {
+        const products = await dataHandler.getAllProduct();
+        removeContents();
+        renderProducts(products);
+    })
+}
 
 
 function filterByCategory(){
