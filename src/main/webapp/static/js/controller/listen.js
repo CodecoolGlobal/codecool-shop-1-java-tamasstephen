@@ -1,7 +1,7 @@
 import {dataHandler} from "../data/dataHandler.js";
 import {generateModal, updateCartTooltip, renderProducts} from "../view/view.js";
 
-export {addProductToCart, openModal, filterByCategory, addEventOnSuppliers, addEventOnLogo}
+export {addProductToCart, openModal, addEventOnCategory, addEventOnSuppliers, addEventOnLogo}
 
 
 async function addProductToCart(event) {
@@ -77,7 +77,7 @@ async function listenToModalClose(event) {
 
 }
 
-let currentEvent;
+let currentEventSupplier;
 
 function addEventOnSuppliers() {
     const buttons = document.querySelectorAll(".supplier");
@@ -86,8 +86,7 @@ function addEventOnSuppliers() {
 
 async function filterBySupplier(event){
     const supplierName = event.currentTarget.getAttribute("supplier-name");
-    currentEvent = event.currentTarget;
-    console.log(currentEvent);
+    currentEventSupplier = event.currentTarget;
     addSupplierOptionAsSelectedAndDeletable(event, supplierName);
     const supplierId = event.currentTarget.getAttribute('supplier-id');
     localStorage.setItem("supplierId", supplierId);
@@ -100,7 +99,7 @@ async function filterBySupplier(event){
     if (products.length === 0) {
         alert("We dont have product in this category");
     } else {
-        currentEvent.removeEventListener("click", filterBySupplier);
+        currentEventSupplier.removeEventListener("click", filterBySupplier);
         removeContents();
         deleteSupplierFilter(supplierName);
         renderProducts(products);
@@ -108,19 +107,21 @@ async function filterBySupplier(event){
 }
 
 function deleteSupplierFilter(supplierName) {
-    const currentSupplier = document.querySelector('.deletable-supplier');
     const closeButton = document.querySelector(".close-btn");
     closeButton.addEventListener('click', async () => {
         localStorage.removeItem("supplierId");
-        console.log(currentEvent);
-        currentEvent.classList.remove('deletable-supplier');
-        currentEvent.classList.add('supplier');
-        currentEvent.innerHTML = `<i style="font-size:24px" class="fa">&#xf096;</i>
+        console.log(currentEventSupplier);
+        currentEventSupplier.innerHTML = `<i style="font-size:24px" class="fa">&#xf096;</i>
                                                  <span  style="padding-left: 0.2rem">${supplierName}</span>`
+        currentEventSupplier.classList.remove('deletable-supplier');
+        currentEventSupplier.classList.add('supplier');
+
         if(localStorage.getItem("categoryId") == null){
             await getAllProduct();
+        } else {
+            await filterByCategory(currentEventCategory);
         }
-        currentEvent.addEventListener("click", filterBySupplier);
+        currentEventSupplier.addEventListener("click", filterBySupplier);
         //TODO: add event on suppliers again after delete, and add cart event after refresh the product content,
         // and maybe if delete one filter parameter then change the page content to the one filter parameter or if there is no
         // filter parameter then render all products
@@ -139,40 +140,43 @@ function addSupplierOptionAsSelectedAndDeletable(event, supplierName){
 function addEventOnLogo() {
     const logo = document.querySelector('.logo');
     logo.addEventListener('click', async () => {
+        localStorage.clear();
         await getAllProduct();
     })
 }
 
 async function getAllProduct() {
-    localStorage.clear();
-    const currentSupplier = document.querySelector('.current-supplier');
-    if (currentSupplier != null) {
-        currentSupplier.remove();
-    }
     const products = await dataHandler.getAllProduct();
     removeContents();
     renderProducts(products);
 }
 
-function filterByCategory() {
+function addEventOnCategory() {
     const buttons = document.querySelectorAll(".menu div");
     buttons.forEach(button => button.addEventListener("click", async (event) => {
-            const categoryId = event.currentTarget.getAttribute('category-id');
-            localStorage.setItem("categoryId", categoryId);
-            let products;
-            if (localStorage.getItem("supplierId") == null) {
-                products = await dataHandler.getProductsByCategory(categoryId);
-            } else {
-                products = await dataHandler.getProductsByTwoParameter(categoryId, localStorage.getItem("supplierId"));
-            }
-            if (products.length === 0) {
-                alert("We dont have product in this category");
-            } else {
-                removeContents();
-                renderProducts(products);
-            }
+            await filterByCategory(event.currentTarget)
         }
     ))
+}
+
+let currentEventCategory;
+
+async function filterByCategory(event){
+    const categoryId = event.getAttribute('category-id');
+    currentEventCategory = event;
+    localStorage.setItem("categoryId", categoryId);
+    let products;
+    if (localStorage.getItem("supplierId") == null) {
+        products = await dataHandler.getProductsByCategory(categoryId);
+    } else {
+        products = await dataHandler.getProductsByTwoParameter(categoryId, localStorage.getItem("supplierId"));
+    }
+    if (products.length === 0) {
+        alert("We dont have product in this category");
+    } else {
+        removeContents();
+        renderProducts(products);
+    }
 }
 
 function removeContents() {
