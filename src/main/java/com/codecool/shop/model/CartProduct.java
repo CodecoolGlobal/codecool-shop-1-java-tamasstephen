@@ -37,6 +37,7 @@ public class CartProduct {
         return totalPrice;
     }
 
-
-
+    public String getImgLink() {
+        return imgLink;
+    }
 }

@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+
+    <meta name="author" content="Codecool" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <title>Codecool Shop</title>
+
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+    <!-- Bootstrap components -->
+    <!-- Latest compiled and minified Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+    <!--Latest compiled and minified Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- End of Bootstrap components -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/static/css/custom.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,57 +44,85 @@
 <body>
 <div th:replace="plainheader.html :: plain-nav"></div>
 <main class="payment-container">
+    <div class="payment">
+
+
     <div class="payment-type">
+
+        <h2>Payment details</h2>
 
         <div id="payment-method">
             <h3>Payment Method</h3>
             <form action="">
-                <input type="radio" id="paypal" name="payment-option" checked>PayPal<label for="paypal"></label>
-                <input type="radio" id="credit-card" name="payment-option">Credit or Debit Card<label for="credit-card"></label>
+                <div class="form-vertical">
+                    <input type="radio" id="paypal" name="payment-option" checked>PayPal<label for="paypal"></label>
+                </div>
+                <div class="form-vertical">
+                    <input type="radio" id="credit-card" name="payment-option">Credit or Debit Card<label for="credit-card"></label>
+                </div>
             </form>
         </div>
+        <div class="payment-holder">
+            <div class="paypal-payment">
+                <h3>Paypal Payment</h3>
+                <form action="/payment" method="post" class="payment-form">
+                    <div class="form-item">
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="email" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="email" required>
+                    </div>
+                    <div class="submit-holder">
+                        <input type="submit" class="link-button" value="Pay">
+                    </div>
+                </form>
+            </div>
 
-        <div class="paypal-payment">
-            <h3>Paypal Payment</h3>
-            <form action="/payment" method="post">
-                <label for="email">Email</label>
-                <input type="text" id="email" name="email" required>
-                <label for="password">Password</label>
-                <input type="password" id="password" name="email" required>
-                <input type="submit">
-            </form>
+            <div class="credit-card-payment not-visible">
+
+                <h3>Credit or Debit Card Payment</h3>
+
+                <form action="/payment" method="post" class="payment-form">
+                    <div class="form-item">
+                        <label for="card-holder">Card Holder</label>
+                        <input type="text" id="card-holder" name="card-holder" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="card-number">Card Number</label>
+                        <input type="number" id="card-number" name="card-number" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="expiry">Expiry date</label>
+                        <input type="number" id="expiry" name="expiry" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="cvv">CVV</label>
+                        <input type="number" id="cvv" name="cvv" required>
+                    </div>
+                    <div class="submit-holder">
+                        <input type="submit" class="link-button">
+                    </div>
+                </form>
+
+            </div>
         </div>
-
-        <div class="credit-card-payment not-visible">
-
-            <h3>Credit or Debit Card Payment</h3>
-
-            <form action="/payment" method="post">
-                <label for="card-holder">Card Holder</label>
-                <input type="text" id="card-holder" name="card-holder" required>
-                <label for="card-number">Card Number</label>
-                <input type="number" id="card-number" name="card-number" required>
-                <label for="expiry">Expiry date</label>
-                <input type="number" id="expiry" name="expiry" required>
-                <label for="cvv">CVV</label>
-                <input type="number" id="cvv" name="cvv" required>
-                <input type="submit">
-            </form>
-
         </div>
-    </div>
-
+        </div>
     <div class="cart-products">
         <div class="overview">
+            <h2>Cart Overview</h2>
             <div class="product" th:each="prod,iterStat : ${products}">
+                <img src="" width="32" height="32" th:attr="src=${prod.getImgLink()}">
                 <p class="product-name" th:text="${prod.getName()}"></p>
                 <p class="product-amount" th:text="${prod.amount}"></p>
-                <p class="product-total" th:text="${prod.total}"></p>
+                <p class="product-total" th:text="${prod.total} + ' USD'"></p>
             </div>
             <div class="divider"></div>
             <div class="total">
                 <p class="label">Total:</p>
-                <p class="total-value" th:text="${total}">Total:</p>
+                <p class="total-value" th:text="${total} + ' USD'">Total:</p>
             </div>
         </div>
     </div>
