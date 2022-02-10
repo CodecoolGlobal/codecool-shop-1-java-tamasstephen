@@ -1,16 +1,20 @@
-import { addProductToCart } from "./controller/listen.js";
+import {addProductToCart, addEventOnSuppliers, addEventOnCategory, addEventOnLogo} from "./controller/listen.js";
 import { openModal } from "./controller/listen.js";
-import { filterByCategory } from "./controller/listen.js";
 import {updateCartTooltip} from "./view/view.js";
 import {dataHandler} from "./data/dataHandler.js";
 
 init();
 
+//:TODO Should call event on add cart button after change the content
+
 async function init(){
     setUpProductButtons();
     setUpCartButton();
     updateCartTooltip(await dataHandler.getProductCount());
-    filterByCategory();
+    addEventOnCategory();
+    addEventOnSuppliers();
+    addEventOnLogo();
+    localStorage.clear();
 }
 
 function setUpProductButtons(fnc){
