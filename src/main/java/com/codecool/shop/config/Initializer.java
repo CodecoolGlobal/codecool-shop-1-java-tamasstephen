@@ -31,9 +31,9 @@ public class Initializer implements ServletContextListener {
         // TODO: initialize a singleton order?
 
         //setting up a new supplier
-        Supplier amazon = new Supplier("Amazon", "Digital content and services");
+        Supplier amazon = new Supplier("Creatives", "Digital content and services");
         supplierDataStore.add(amazon);
-        Supplier lenovo = new Supplier("Lenovo", "Computers");
+        Supplier lenovo = new Supplier("CreativeCo.", "Computers");
         supplierDataStore.add(lenovo);
 
         //setting up a new product category
