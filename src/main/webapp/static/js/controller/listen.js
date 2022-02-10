@@ -65,8 +65,8 @@ async function listenToCartChanges(event) {
            const productSubTotal =  cartContent.filter(product => product["id"] === Number(itemId))[0]["totalPrice"];
 
            //TODO: kind of view thing
-           cart.querySelector(".total-amount").textContent = total[0]["totalPrice"];
-           productDiv.querySelector(".product-total").textContent = productSubTotal;
+           cart.querySelector(".total-amount").textContent = `${total[0]["totalPrice"]} USD`;
+           productDiv.querySelector(".product-total").textContent = `${productSubTotal} USD`;
         }
 
         updateCartTooltip(cartProductCount);

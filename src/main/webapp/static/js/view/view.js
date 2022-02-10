@@ -57,15 +57,15 @@ export function generateModal(cartContent) {
             const div = `<div class="cart-item" data-id="${obj.id}">
                             <div class="img-holder"><img class="product-preview" src="${obj.imgLink}" height="72" width="72"></div>
                             <p class="cart-name">${obj.name}</p>
-                            <p>${obj.unitPrice}</p> 
+                            <p>${obj.unitPrice} USD</p> 
                             <input class="item-amount" data-id="${obj.id}" type="number" value="${obj.amount}"> 
-                            <p class="product-total">${obj.totalPrice}</p>
+                            <p class="product-total">${obj.totalPrice} USD</p>
                             </div>`
             products += div;
         } else {
             total += `<div class="cart-total">
                         <p class="total-label">Total:</p>
-                        <p class="total-amount">${obj.totalPrice}</p>
+                        <p class="total-amount">${obj.totalPrice} USD</p>
                         </div>`
         }
     }
