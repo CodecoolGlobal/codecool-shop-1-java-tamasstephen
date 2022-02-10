@@ -6,6 +6,7 @@ export function updateCartTooltip(amount) {
 }
 
 export function renderProducts(products) {
+    console.log(products);
     const contentDiv = document.querySelector("#products");
     for (let product of products) {
         let outerDiv = document.createElement('div');
@@ -21,7 +22,7 @@ export function renderProducts(products) {
                 </div>
                 <div class="card-body">
                     <div class="card-text">
-                        <p class="lead" >${product.totalPrice}</p>
+                        <p class="lead" >${product.unitPrice} USD</p>
                     </div>
                     <div class="card-text">
                         <a class="btn btn-success add-to-cart">Add to cart</a>
@@ -57,15 +58,15 @@ export function generateModal(cartContent) {
             const div = `<div class="cart-item" data-id="${obj.id}">
                             <div class="img-holder"><img class="product-preview" src="${obj.imgLink}" height="72" width="72"></div>
                             <p class="cart-name">${obj.name}</p>
-                            <p>${obj.unitPrice}</p> 
+                            <p>${obj.unitPrice} USD</p> 
                             <input class="item-amount" data-id="${obj.id}" type="number" value="${obj.amount}"> 
-                            <p class="product-total">${obj.totalPrice}</p>
+                            <p class="product-total">${obj.totalPrice} USD</p>
                             </div>`
             products += div;
         } else {
             total += `<div class="cart-total">
                         <p class="total-label">Total:</p>
-                        <p class="total-amount">${obj.totalPrice}</p>
+                        <p class="total-amount">${obj.totalPrice} USD</p>
                         </div>`
         }
     }

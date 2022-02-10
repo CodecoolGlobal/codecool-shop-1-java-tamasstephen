@@ -1,5 +1,5 @@
 :root {
-    --color-cart-tooltip-background: steelblue;
+    --color-cart-blue: dodgerblue;
     --color-font-black: #141414;
     --color-dark-text: #080808;
     --color-light-text: #BEBEBE;
@@ -122,17 +122,15 @@ nav {
 .supplier, .deletable-supplier{
     display: flex;
     flex-direction: row;
-    border-style: groove;
 }
 
 .supplier{
     color:#444;
-    border:1px solid #CCC;
-    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
     cursor:pointer;
     vertical-align:middle;
     padding: 0.5rem;
     text-align: center;
+    text-transform: capitalize;
 }
 
 
@@ -491,7 +489,7 @@ fieldset + fieldset {
 .checkout-page input[type="tel"]:focus,
 .form-item input:focus{
     outline: none;
-    border-bottom: 1px solid dodgerblue;
+    border-bottom: 1px solid var(--color-cart-blue);
 }
 
 #shipping-or-not {
@@ -585,6 +583,7 @@ button.link-button {
     margin-top: 1rem;
     border-top: 1px solid var(--color-very-light-gray);
     justify-content: space-between;
+    font-weight: 500;
 }
 
 .overview .product-amount {
@@ -609,5 +608,52 @@ button.link-button {
     font-size: 1.5rem;
 }
 
+input[type="radio"] {
+    opacity: 0;
+}
 
+div.form-vertical > label.payment-label {
+    display: inline-block;
+    margin-left: .5rem;
+    margin-bottom: 0;
+}
 
+.form-vertical {
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    border: 1px solid var(--color-very-light-gray);
+    border-radius: 8px;
+    font-size: 1.125rem;
+}
+
+.selected {
+    border: 2px solid var(--color-cart-blue);
+    color: var(--color-cart-blue);
+    font-weight: 500;
+}
+
+.filter-label {
+    color: var(--color-gray-dark);
+    margin-bottom: .5rem;
+}
+
+div.supplier > i.fa,
+i.fa.close-btn{
+    color: var(--color-gray-light);
+}
+
+.logo >h1 >a {
+    color: var(--color-gray-dark);
+}
+
+.logo >h1 >a:hover {
+    text-decoration: none;
+}
+
+.success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-gray-middle);
+}
