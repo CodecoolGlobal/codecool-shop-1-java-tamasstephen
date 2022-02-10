@@ -636,3 +636,11 @@ i.fa.close-btn{
     color: var(--color-gray-light);
 }
 
+.logo >h1 >a {
+    color: var(--color-gray-dark);
+}
+
+.logo >h1 >a:hover {
+    text-decoration: none;
+}
+
