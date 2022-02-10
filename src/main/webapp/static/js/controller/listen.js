@@ -92,9 +92,8 @@ function addEventOnSuppliers() {
 
 async function filterBySupplier(event){
     const supplierName = event.currentTarget.getAttribute("supplier-name");
-    currentEventSupplier = event.currentTarget;
     const supplierId = event.currentTarget.getAttribute('supplier-id');
-    localStorage.setItem("supplierId", supplierId);
+    const tempEvent = event.currentTarget;
     let products;
     if (localStorage.getItem("categoryId") == null) {
         products = await dataHandler.getProductBySupplier(supplierId);
@@ -104,6 +103,13 @@ async function filterBySupplier(event){
     if (products.length === 0) {
         alert("We dont have product in this category");
     } else {
+        if(localStorage.getItem("supplierId") != null){
+            changeSupplierInnerContent(currentEventSupplier.getAttribute("supplier-name"));
+            currentEventSupplier.addEventListener("click", filterBySupplier);
+        }
+        console.log(tempEvent);
+        currentEventSupplier = tempEvent;
+        localStorage.setItem("supplierId", supplierId);
         addSupplierOptionAsSelectedAndDeletable(supplierName);
         currentEventSupplier.removeEventListener("click", filterBySupplier);
         removeContents();
@@ -118,10 +124,7 @@ function deleteSupplierFilter(supplierName) {
     closeButton.addEventListener('click', async () => {
         localStorage.removeItem("supplierId");
         console.log(currentEventSupplier);
-        currentEventSupplier.innerHTML = `<i style="font-size:24px" class="fa">&#xf096;</i>
-                                                 <span  style="padding-left: 0.2rem">${supplierName}</span>`
-        currentEventSupplier.classList.remove('deletable-supplier');
-        currentEventSupplier.classList.add('supplier');
+        changeSupplierInnerContent(supplierName);
 
         if(localStorage.getItem("categoryId") == null){
             await getAllProduct();
@@ -132,6 +135,13 @@ function deleteSupplierFilter(supplierName) {
         }
         currentEventSupplier.addEventListener("click", filterBySupplier);
     });
+}
+
+function changeSupplierInnerContent(supplierName){
+    currentEventSupplier.innerHTML = `<i style="font-size:24px" class="fa">&#xf096;</i>
+                                                 <span  style="padding-left: 0.2rem">${supplierName}</span>`
+    currentEventSupplier.classList.remove('deletable-supplier');
+    currentEventSupplier.classList.add('supplier');
 }
 
 function addSupplierOptionAsSelectedAndDeletable(supplierName){
