@@ -1,4 +1,4 @@
-export function updateCartTooltip(amount){
+export function updateCartTooltip(amount) {
 
     const cartTooltip = document.querySelector("#cart-tooltip");
     cartTooltip.innerText = amount;
@@ -7,33 +7,33 @@ export function updateCartTooltip(amount){
 
 export function renderProducts(products) {
     const contentDiv = document.querySelector("#products");
-    for(let product of products){
+    for (let product of products) {
         let outerDiv = document.createElement('div');
         outerDiv.classList.add("col");
         outerDiv.classList.add("col-sm-12");
         outerDiv.classList.add("col-md-6");
         outerDiv.classList.add("col-lg-4");
         outerDiv.innerHTML = `<div class="card"  data-id="${product.id}">
-                    <img class=""   src="${product.imgLink}" alt=""/>
-                    <div class="card-header">
-                        <h4 class="card-title" >${product.name}</h4>
-                        <p class="card-text" >${product.description}</p>
+                <img class=""   src="${product.imgLink}" alt=""/>
+                <div class="card-header">
+                    <h4 class="card-title" >${product.name}</h4>
+                    <p class="card-text" >${product.description}</p>
+                </div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <p class="lead" >${product.totalPrice}</p>
                     </div>
-                    <div class="card-body">
-                        <div class="card-text">
-                            <p class="lead" >${product.totalPrice}</p>
-                        </div>
-                        <div class="card-text">
-                            <a class="btn btn-success add-to-cart">Add to cart</a>
-                        </div>
+                    <div class="card-text">
+                        <a class="btn btn-success add-to-cart">Add to cart</a>
                     </div>
-                </div>`;
+                </div>
+            </div>`;
         contentDiv.appendChild(outerDiv);
     }
 }
 
 
-export function generateModal(cartContent){
+export function generateModal(cartContent) {
 
     const modal = document.createElement("div");
     const cartWrapper = document.createElement("div");
@@ -52,8 +52,8 @@ export function generateModal(cartContent){
     let products = "<div class='cart-upper'>";
     let total = `<div class='cart-lower'>`;
 
-    for (const obj of cartContent){
-        if (obj.id !== 0){
+    for (const obj of cartContent) {
+        if (obj.id !== 0) {
             const div = `<div class="cart-item" data-id="${obj.id}">
                             <div class="img-holder"><img class="product-preview" src="${obj.imgLink}" height="72" width="72"></div>
                             <p class="cart-name">${obj.name}</p>

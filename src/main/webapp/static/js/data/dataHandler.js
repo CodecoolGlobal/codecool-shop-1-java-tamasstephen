@@ -20,6 +20,16 @@ const dataHandler = {
       return await this.apiGet(`/api/category?categoryId=${categoryId}`);
     },
 
+    async getProductBySupplier(supplierId){
+        return await this.apiGet(`/api/supplier?supplierId=${supplierId}`)
+    },
+    async getAllProduct(){
+        return await this.apiGet('/api/all-product')
+    },
+    async getProductsByTwoParameter(categoryId, supplierId){
+        return await this.apiGet(`/api/filter?categoryId=${categoryId}&supplierId=${supplierId}`);
+    },
+
     async apiPost(url, payload){
         const response = await fetch(url, {
             method: "POST",

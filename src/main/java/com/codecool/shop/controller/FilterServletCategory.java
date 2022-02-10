@@ -18,8 +18,8 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "FilterServlet", urlPatterns = "/api/category", loadOnStartup = 6)
-public class FilterServlet extends javax.servlet.http.HttpServlet {
+@WebServlet(name = "FilterServletCategory", urlPatterns = "/api/category", loadOnStartup = 6)
+public class FilterServletCategory extends javax.servlet.http.HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,7 +38,6 @@ public class FilterServlet extends javax.servlet.http.HttpServlet {
             CartProduct cartProduct = new CartProduct(1, product.getId(), product.getName(), product.getDescription(), product.getDefaultPrice(), product.getDefaultPrice());
             cartProduct.setImgLink(product.getImgUrl());
             cartProducts.add(cartProduct);
-
         }
 
         String json = new Gson().toJson(cartProducts);

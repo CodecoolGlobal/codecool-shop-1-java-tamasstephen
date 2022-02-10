@@ -1,6 +1,5 @@
-import { addProductToCart } from "./controller/listen.js";
-import { openModal } from "./controller/listen.js";
-import { filterByCategory } from "./controller/listen.js";
+import {addProductToCart, addEventOnSuppliers, addEventOnCategory, addEventOnLogo} from "./controller/listen.js";
+import { openModal, setUpProductButtons} from "./controller/listen.js";
 import {updateCartTooltip} from "./view/view.js";
 import {dataHandler} from "./data/dataHandler.js";
 
@@ -10,10 +9,13 @@ async function init(){
     setUpProductButtons();
     setUpCartButton();
     updateCartTooltip(await dataHandler.getProductCount());
-    filterByCategory();
+    addEventOnCategory();
+    addEventOnSuppliers();
+    addEventOnLogo();
+    localStorage.clear();
 }
 
-function setUpProductButtons(){
+function setUpProductButtons(fnc){
     const buttons = document.querySelectorAll(".add-to-cart");
     buttons.forEach(button => button.addEventListener("click", addProductToCart));
 }
