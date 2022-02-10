@@ -165,12 +165,36 @@ async function getAllProduct() {
     const products = await dataHandler.getAllProduct();
     const suppliers = await dataHandler.getAllSupplier();
     console.log(suppliers);
+    deleteSuppliersDivContent();
+    renderAllSupplier(suppliers);
     removeContents();
     renderProducts(products);
+    addEventOnSuppliers();
     setUpProductButtons();
 }
 
+// `<div class="supplier"  supplier-name="${supplier.name}"
+//      supplier-id="${supplier.id}">
+//
+// </div>`
 
+function renderAllSupplier(suppliers){
+    const suppliersDiv = document.querySelector(".suppliers");
+    for(let supplier of suppliers){
+        let supplierDiv = document.createElement('div');
+        supplierDiv.classList.add('supplier');
+        supplierDiv.setAttribute('supplier-name', supplier.name);
+        supplierDiv.setAttribute('supplier-id', supplier.id);
+        supplierDiv.innerHTML = `<i style="font-size:24px" class="fa">&#xf096;</i>
+                                <span style="padding-left: 0.2rem" ">${supplier.name}</span>`;
+        suppliersDiv.appendChild(supplierDiv);
+    }
+}
+
+function deleteSuppliersDivContent(){
+    const suppliersDiv = document.querySelectorAll(".suppliers div");
+    suppliersDiv.forEach(supplierDiv => supplierDiv.remove());
+}
 
 function addEventOnCategory() {
     const buttons = document.querySelectorAll(".menu div");
