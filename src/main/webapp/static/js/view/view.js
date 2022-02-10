@@ -6,6 +6,7 @@ export function updateCartTooltip(amount) {
 }
 
 export function renderProducts(products) {
+    console.log(products);
     const contentDiv = document.querySelector("#products");
     for (let product of products) {
         let outerDiv = document.createElement('div');
@@ -21,7 +22,7 @@ export function renderProducts(products) {
                 </div>
                 <div class="card-body">
                     <div class="card-text">
-                        <p class="lead" >${product.totalPrice}</p>
+                        <p class="lead" >${product.unitPrice} USD</p>
                     </div>
                     <div class="card-text">
                         <a class="btn btn-success add-to-cart">Add to cart</a>

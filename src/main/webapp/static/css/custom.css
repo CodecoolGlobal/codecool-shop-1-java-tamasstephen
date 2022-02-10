@@ -644,3 +644,12 @@ i.fa.close-btn{
     text-decoration: none;
 }
 
+.success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-gray-middle);
+}
+
+
+
