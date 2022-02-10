@@ -1,4 +1,4 @@
-import {addProductToCart, addEventOnSuppliers, addEventOnCategory, addEventOnLogo} from "./controller/listen.js";
+import {addEventOnSuppliers, addEventOnCategory, addEventOnLogo} from "./controller/listen.js";
 import { openModal, setUpProductButtons} from "./controller/listen.js";
 import {updateCartTooltip} from "./view/view.js";
 import {dataHandler} from "./data/dataHandler.js";
@@ -13,11 +13,6 @@ async function init(){
     addEventOnSuppliers();
     addEventOnLogo();
     localStorage.clear();
-}
-
-function setUpProductButtons(fnc){
-    const buttons = document.querySelectorAll(".add-to-cart");
-    buttons.forEach(button => button.addEventListener("click", addProductToCart));
 }
 
 function setUpCartButton(){
