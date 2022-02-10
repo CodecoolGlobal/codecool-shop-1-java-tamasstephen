@@ -13,7 +13,7 @@ async function init(){
     filterByCategory();
 }
 
-function setUpProductButtons(fnc){
+function setUpProductButtons(){
     const buttons = document.querySelectorAll(".add-to-cart");
     buttons.forEach(button => button.addEventListener("click", addProductToCart));
 }

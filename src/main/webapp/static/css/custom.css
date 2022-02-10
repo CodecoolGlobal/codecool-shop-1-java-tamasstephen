@@ -476,7 +476,8 @@ fieldset + fieldset {
 .checkout-page input[type="text"],
 .checkout-page input[type="number"],
 .checkout-page input[type="email"],
-.checkout-page input[type="tel"]{
+.checkout-page input[type="tel"],
+.form-item input{
     border-top: none;
     border-left: none;
     border-right: none;
@@ -486,7 +487,8 @@ fieldset + fieldset {
 .checkout-page input[type="text"]:focus,
 .checkout-page input[type="number"]:focus,
 .checkout-page input[type="email"]:focus,
-.checkout-page input[type="tel"]:focus{
+.checkout-page input[type="tel"]:focus,
+.form-item input:focus{
     outline: none;
     border-bottom: 1px solid dodgerblue;
 }
@@ -507,5 +509,104 @@ button.link-button {
     padding-bottom: .5rem;
     border: none;
 }
+
+.payment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cart-products{
+    min-width: 15%;
+}
+
+.payment {
+    min-width: 40%;
+    margin-right: 2rem;
+}
+.payment-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+
+
+.payment-type h2,
+.payment-type h3 {
+    font-weight: normal;
+}
+
+.payment-type h2 {
+    margin-bottom: 3rem;
+    font-size: 2rem;
+    text-align: center;
+}
+
+#payment-method,
+.payment-holder {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    border-top: 1px solid var(--color-gray-light);
+}
+
+#payment-method form {
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.payment,
+.cart-products {
+    padding: 2rem;
+}
+
+.cart-products {
+    border: 1px solid var(--color-very-light-gray);
+}
+
+.cart-products h2 {
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-bottom: 1rem;
+    color: var(--color-gray-dark);
+}
+
+.overview > .product,
+.overview > .total{
+    display: flex;
+    flex-direction: row;
+    padding-top: 1rem;
+}
+
+.overview > .total {
+    margin-top: 1rem;
+    border-top: 1px solid var(--color-very-light-gray);
+    justify-content: space-between;
+}
+
+.overview .product-amount {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.overview .product-name {
+    width: 9rem;
+}
+
+.overview > .product img {
+    margin-right: .5rem;
+}
+
+#payment-method h3,
+.payment-holder h3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
 
 
