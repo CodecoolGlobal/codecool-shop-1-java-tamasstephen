@@ -63,10 +63,10 @@
 <div class="container">
     <div class="content">
         <div class="suppliers">
-            <strong>Refine Results</strong>
+            <p class="filter-label">Suppliers:</p>
             <div class="supplier" th:each="supplier: ${suppliers}" th:supplier-name="${supplier.getName()}" th:supplier-id="${supplier.getId()}">
                 <i style="font-size:24px" class="fa">&#xf096;</i>
-                <span  style="padding-left: 0.2rem" th:text="${supplier.name.toUpperCase()}">Supplier Name</span>
+                <span  style="padding-left: 0.2rem" th:text="${supplier.name}">Supplier Name</span>
             </div>
 
 

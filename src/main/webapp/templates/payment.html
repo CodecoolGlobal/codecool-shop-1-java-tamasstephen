@@ -117,7 +117,7 @@
             <div class="product" th:each="prod,iterStat : ${products}">
                 <img src="" width="32" height="32" th:attr="src=${prod.getImgLink()}">
                 <p class="product-name" th:text="${prod.getName()}"></p>
-                <p class="product-amount" th:text="${prod.amount}"></p>
+                <p class="product-amount" th:text="${prod.amount} + ' pc(s)'"></p>
                 <p class="product-total" th:text="${prod.total} + ' USD'"></p>
             </div>
             <div class="divider"></div>
