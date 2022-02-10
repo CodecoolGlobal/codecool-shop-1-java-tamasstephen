@@ -1,7 +1,7 @@
 import {dataHandler} from "../data/dataHandler.js";
 import {generateModal, updateCartTooltip, renderProducts} from "../view/view.js";
 
-export {addProductToCart, openModal, addEventOnCategory, addEventOnSuppliers, addEventOnLogo, setUpProductButtons}
+export {addProductToCart, openModal, addEventOnCategory, addEventOnSuppliers, addEventOnLogo, setUpProductButtons, handlePaymentOption}
 
 
 async function addProductToCart(event) {
@@ -190,4 +190,27 @@ async function filterByCategory(event){
 function removeContents() {
     const contentDivs = document.querySelectorAll("#products div");
     contentDivs.forEach(contentDiv => contentDiv.remove());
+}
+
+function handlePaymentOption(event){
+
+    const paypalPayment = document.querySelector(".paypal-payment");
+    const cardPayment = document.querySelector(".credit-card-payment");
+
+    if (event.currentTarget.id === "paypal"){
+
+        document.querySelector(".paypal-card").classList.add("selected")
+        document.querySelector(".card-card").classList.remove("selected")
+        paypalPayment.classList.remove("not-visible");
+        cardPayment.classList.add("not-visible");
+
+    } else {
+
+        document.querySelector(".paypal-card").classList.remove("selected")
+        document.querySelector(".card-card").classList.add("selected")
+        paypalPayment.classList.add("not-visible");
+        cardPayment.classList.remove("not-visible");
+
+    }
+
 }

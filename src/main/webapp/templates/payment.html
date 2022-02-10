@@ -38,6 +38,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <script src="/static/js/initPayment.js" type="module"></script>
     <meta charset="UTF-8">
     <title>PayME</title>
 </head>
@@ -54,10 +55,10 @@
         <div id="payment-method">
             <h3>Payment Method</h3>
             <form action="">
-                <div class="form-vertical">
+                <div class="form-vertical paypal-card selected">
                     <input type="radio" id="paypal" name="payment-option" checked>PayPal<label for="paypal"></label>
                 </div>
-                <div class="form-vertical">
+                <div class="form-vertical card-card">
                     <input type="radio" id="credit-card" name="payment-option">Credit or Debit Card<label for="credit-card"></label>
                 </div>
             </form>
@@ -75,7 +76,7 @@
                         <input type="password" id="password" name="email" required>
                     </div>
                     <div class="submit-holder">
-                        <input type="submit" class="link-button" value="Pay">
+                        <input type="submit" class="link-button" value="Confirm and Pay">
                     </div>
                 </form>
             </div>
@@ -91,18 +92,18 @@
                     </div>
                     <div class="form-item">
                         <label for="card-number">Card Number</label>
-                        <input type="number" id="card-number" name="card-number" required>
+                        <input type="number" id="card-number" name="card-number" maxlength="16" minlength="15" required>
                     </div>
                     <div class="form-item">
                         <label for="expiry">Expiry date</label>
-                        <input type="number" id="expiry" name="expiry" required>
+                        <input type="number" id="expiry" name="expiry" maxlength="5" required>
                     </div>
                     <div class="form-item">
                         <label for="cvv">CVV</label>
-                        <input type="number" id="cvv" name="cvv" required>
+                        <input type="number" id="cvv" name="cvv" maxlength="3" required>
                     </div>
                     <div class="submit-holder">
-                        <input type="submit" class="link-button">
+                        <input type="submit" class="link-button" value="Confirm and Pay">
                     </div>
                 </form>
 

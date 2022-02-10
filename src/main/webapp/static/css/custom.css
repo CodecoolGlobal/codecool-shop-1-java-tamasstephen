@@ -1,5 +1,5 @@
 :root {
-    --color-cart-tooltip-background: steelblue;
+    --color-cart-blue: dodgerblue;
     --color-font-black: #141414;
     --color-dark-text: #080808;
     --color-light-text: #BEBEBE;
@@ -491,7 +491,7 @@ fieldset + fieldset {
 .checkout-page input[type="tel"]:focus,
 .form-item input:focus{
     outline: none;
-    border-bottom: 1px solid dodgerblue;
+    border-bottom: 1px solid var(--color-cart-blue);
 }
 
 #shipping-or-not {
@@ -609,5 +609,21 @@ button.link-button {
     font-size: 1.5rem;
 }
 
+input[type="radio"] {
+    margin-right: .5rem;
+    height: 1.125rem;
+    width: 1.125rem;
+}
 
+.form-vertical {
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    border: 1px solid var(--color-very-light-gray);
+    border-radius: 8px;
+}
+
+.selected {
+    border: 2px solid var(--color-cart-blue);
+}
 
