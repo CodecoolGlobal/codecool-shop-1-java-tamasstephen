@@ -1,10 +1,11 @@
 package com.codecool.shop.controller;
 
-import com.codecool.shop.dao.implementation.ProductCategoryDaoMem;
 import com.codecool.shop.dao.implementation.ProductDaoMem;
+import com.codecool.shop.dao.implementation.SupplierDaoMem;
 import com.codecool.shop.model.CartProduct;
 import com.codecool.shop.model.Product;
-import com.codecool.shop.model.ProductCategory;
+import com.codecool.shop.model.Supplier;
+import com.codecool.shop.model.SupplierModel;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -16,24 +17,22 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/api/all-product")
-public class AllProductServlet extends javax.servlet.http.HttpServlet {
-
+@WebServlet("/api/all-supplier")
+public class AllSupplierServlet extends javax.servlet.http.HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        ProductDaoMem productDaoMem = ProductDaoMem.getInstance();
+        SupplierDaoMem supplierDaoMem = SupplierDaoMem.getInstance();
 
-        List<Product> products = productDaoMem.getAll();
+        List<Supplier> suppliers = supplierDaoMem.getAll();
 
-        List<CartProduct> cartProducts = new ArrayList<>();
+        List<SupplierModel> suppliersModel = new ArrayList<>();
 
-        for(Product product : products){
-            CartProduct cartProduct = new CartProduct(1, product.getId(), product.getName(), product.getDescription(), product.getDefaultPrice(), product.getDefaultPrice());
-            cartProduct.setImgLink(product.getImgUrl());
-            cartProducts.add(cartProduct);
+        for(Supplier supplier : suppliers){
+            SupplierModel supplierModel = new SupplierModel(supplier.getName(), supplier.getId());
+            suppliersModel.add(supplierModel);
         }
 
-        String json = new Gson().toJson(cartProducts);
+        String json = new Gson().toJson(suppliersModel);
 
         PrintWriter out = response.getWriter();
         response.setContentType("application/json");
@@ -42,5 +41,4 @@ public class AllProductServlet extends javax.servlet.http.HttpServlet {
         out.flush();
 
     }
-
 }

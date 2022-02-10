@@ -163,10 +163,14 @@ function addEventOnLogo() {
 
 async function getAllProduct() {
     const products = await dataHandler.getAllProduct();
+    const suppliers = await dataHandler.getAllSupplier();
+    console.log(suppliers);
     removeContents();
     renderProducts(products);
     setUpProductButtons();
 }
+
+
 
 function addEventOnCategory() {
     const buttons = document.querySelectorAll(".menu div");
