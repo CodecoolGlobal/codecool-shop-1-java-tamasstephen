@@ -163,7 +163,7 @@ function addEventOnCategory() {
 let currentEventCategory;
 
 async function filterByCategory(event){
-    const categoryId = event.getAttribute('category-id');
+    const categoryId = event.firstElementChild.getAttribute('category-id');
     currentEventCategory = event;
     localStorage.setItem("categoryId", categoryId);
     let products;
