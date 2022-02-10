@@ -37,12 +37,12 @@ public class Initializer implements ServletContextListener {
         supplierDataStore.add(lenovo);
 
         //setting up a new product category
-        ProductCategory tablet = new ProductCategory("tablet", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
-        ProductCategory tv = new ProductCategory("tv", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
-        ProductCategory laptop = new ProductCategory("laptop", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
+        ProductCategory tablet = new ProductCategory("just useless", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
+        ProductCategory kiskutya = new ProductCategory("very useless", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
+        ProductCategory kiscica = new ProductCategory("absolute useless", "Hardware", "A tablet computer, commonly shortened to tablet, is a thin, flat mobile computer with a touchscreen display.");
         productCategoryDataStore.add(tablet);
-        productCategoryDataStore.add(laptop);
-        productCategoryDataStore.add(tv);
+        productCategoryDataStore.add(kiskutya);
+        productCategoryDataStore.add(kiscica);
 
         //setting up products and printing it
         addDummyProducts(productDataStore, productCategoryDataStore, supplierDataStore);
@@ -65,8 +65,8 @@ public class Initializer implements ServletContextListener {
 
         int categoryRange = categories.getAll().size() + 1;
         int supplierRange = supplierDao.getAll().size() + 1;
-        List<String> dummyItems = List.of("Amazon Fire", "Lenovo Ideapad Miix 700", "Amazon Fire HD 8", "LoveBox", "HyperGameLink", "OMG Converter", "Voice Mutator", "Swipe Refresher");
-        List<String> dummyImages = List.of("/static/img/product_1.jpg", "/static/img/product_2.jpg", "/static/img/product_3.jpg");
+        List<String> dummyItems = List.of("Wonder Smulz", "Luffy the very Puffy", "Clen Touch Supper 3000", "LoveBox", "HyperGameLink", "OMG Converter", "Voice Mutator", "Swipe Refresher");
+        List<String> dummyImages = List.of("/static/img/hat.jpg", "/static/img/pot.jpg", "/static/img/boots.jpg", "/static/img/fork.jpg", "/static/img/bowl.jpg", "/static/img/chair.jpg", "/static/img/umbrella.jpg", "/static/img/pottwo.jpg", "/static/img/key.jpg");
         List<BigDecimal> dummyPrice = List.of(new BigDecimal("49.9"), new BigDecimal("89"), new BigDecimal("144.9"));
         List<String> description = List.of(
                 "Amazon's latest Fire HD 8 tablet is a great value for media consumption.",
@@ -76,15 +76,15 @@ public class Initializer implements ServletContextListener {
 
         );
 
-        for (String productName: dummyItems){
+        for (String imageName: dummyImages){
             Product product = new Product(
-                                productName,
+                                dummyItems.get(getRandomNumber(0, dummyItems.size())),
                                 dummyPrice.get(getRandomNumber(0, dummyPrice.size())),
                                 "USD",
                                 description.get(getRandomNumber(0, description.size())),
                                 categories.find(getRandomNumber(1, categoryRange)),
                                 supplierDao.find(getRandomNumber(1, supplierRange))) ;
-            product.setImgUrl(dummyImages.get(getRandomNumber(0, dummyImages.size())));
+            product.setImgUrl(imageName);
             productDataStore.add(product);
         }
     }

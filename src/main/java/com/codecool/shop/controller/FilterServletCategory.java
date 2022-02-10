@@ -6,9 +6,11 @@ import com.codecool.shop.model.CartProduct;
 import com.codecool.shop.model.Product;
 import com.codecool.shop.model.ProductCategory;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -16,9 +18,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/api/category")
+@WebServlet(name = "FilterServletCategory", urlPatterns = "/api/category", loadOnStartup = 6)
 public class FilterServletCategory extends javax.servlet.http.HttpServlet {
-    // TODO: 09/02/2022 uselessThings click clear local storage and list all items
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));

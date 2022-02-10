@@ -90,8 +90,6 @@ public class Order {
             cart.put(id, 1);
 
         }
-
-
     }
 
     public void updateProduct(Integer id, int amount){
@@ -108,8 +106,15 @@ public class Order {
     public String getCartContent(){
 
         Gson gson = new Gson();
-        List<CartProduct> cartProductList = new ArrayList<>();
+        List<CartProduct> cartProductList = getCartProductObjects();
+        CartProduct sum = getSumProduct();
+        cartProductList.add(sum);
+        return gson.toJson(cartProductList);
+    }
 
+    public List<CartProduct> getCartProductObjects(){
+
+        List<CartProduct> cartProductList = new ArrayList<>();
 
         for (Integer id: cart.keySet()){
 
@@ -120,24 +125,44 @@ public class Order {
                     product.getDescription(),
                     product.getDefaultPrice(),
                     product.getDefaultPrice().multiply(new BigDecimal(cart.get(id)), MathContext.UNLIMITED));
+            cartProduct.setImgLink(product.getImgUrl());
             cartProductList.add(cartProduct);
         }
 
-        BigDecimal sumValue = cartProductList.stream()
+        return cartProductList;
+    }
+
+    private CartProduct getSumProduct(){
+
+        BigDecimal sumValue = getCartTotal();
+        return new CartProduct(1, 0, "total", "", null, sumValue);
+
+    }
+
+    public BigDecimal getCartTotal(){
+
+        List <CartProduct> cartProductList = getCartProductObjects();
+
+        return cartProductList.stream()
                 .map(CartProduct::getTotal)
                 .reduce(BigDecimal::add).orElse(null);
-        CartProduct sum = new CartProduct(1, 0, "total", "", null, sumValue);
-        cartProductList.add(sum);
 
-        String cartJson = gson.toJson(cartProductList);
-
-        return cartJson;
     }
 
     public String getCartItemCount(){
         int cartItemCount = cart.values().stream().mapToInt(Integer::intValue).sum();
         String gsonCount = new Gson().toJson(cartItemCount);
         return gsonCount;
+    }
+
+    public void clearOrder(){
+
+        cart.clear();
+        customer = null;
+        billingAddress = null;
+        shippingAddress = null;
+        mustHaveShippingAddress = false;
+
     }
 
     @Override
@@ -154,7 +179,5 @@ public class Order {
         return content.toString();
 
     }
-
-
 
 }

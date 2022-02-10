@@ -44,7 +44,7 @@ export function generateModal(cartContent) {
 
     modal.classList.add("cart");
     cartWrapper.classList.add("cart-wrapper");
-    close.innerText = "Close me";
+    close.innerHTML = "<i class=\"fa fa-times\" aria-hidden=\"true\" id='cart-close-icon'></i>";
     close.classList.add("close-cart-modal");
     button.href = "/checkout";
     button.classList.add("link-button");
@@ -57,7 +57,8 @@ export function generateModal(cartContent) {
     for (const obj of cartContent) {
         if (obj.id !== 0) {
             const div = `<div class="cart-item" data-id="${obj.id}">
-                            <p>${obj.name}</p>
+                            <div class="img-holder"><img class="product-preview" src="${obj.imgLink}" height="72" width="72"></div>
+                            <p class="cart-name">${obj.name}</p>
                             <p>${obj.unitPrice}</p> 
                             <input class="item-amount" data-id="${obj.id}" type="number" value="${obj.amount}"> 
                             <p class="product-total">${obj.totalPrice}</p>
@@ -74,6 +75,14 @@ export function generateModal(cartContent) {
     products += `</div>`;
     total += `</div>`;
     products += total;
+    cartHolder += `<h2>Cart</h2>`
+    cartHolder += `<div class="cart-item labels">
+                    <p class="cart-title">Preview</p>
+                    <p class="cart-title product-name">Product</p>
+                    <p class="cart-title">Unit Price</p>
+                    <p class="cart-title">Amount</p>
+                    <p class="cart-title product-total">Sub-total</p>
+                    </div>`
     cartHolder += products;
     cartHolder += `</div>`;
     cartWrapper.innerHTML = cartHolder;

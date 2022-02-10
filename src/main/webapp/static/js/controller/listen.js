@@ -45,10 +45,11 @@ async function listenToCartChanges(event) {
         prod["amount"] = amount;
         const cartProductCount = await dataHandler.upDateOrder(prod);
         const cartContent = await dataHandler.getCartContent();
+        console.log(cartContent)
         const total = cartContent.filter(product => product["id"] === 0);
 
         //TODO: kind of view thing
-        cart.querySelector(".cart-total").textContent = total[0]["totalPrice"];
+        cart.querySelector(".total-amount").textContent = total[0]["totalPrice"];
 
         if (amount === "0") {
 
@@ -56,11 +57,11 @@ async function listenToCartChanges(event) {
 
         } else {
 
-            const product = cartContent.filter(product => product["id"] === Number(itemId));
+           const productSubTotal =  cartContent.filter(product => product["id"] === Number(itemId))[0]["totalPrice"];
 
-            //TODO: kind of view thing
-            productDiv.querySelector(".product-total").textContent = product[0]["totalPrice"];
-
+           //TODO: kind of view thing
+           cart.querySelector(".total-amount").textContent = total[0]["totalPrice"];
+           productDiv.querySelector(".product-total").textContent = productSubTotal;
         }
 
         updateCartTooltip(cartProductCount);
