@@ -93,7 +93,6 @@ function addEventOnSuppliers() {
 async function filterBySupplier(event){
     const supplierName = event.currentTarget.getAttribute("supplier-name");
     currentEventSupplier = event.currentTarget;
-    addSupplierOptionAsSelectedAndDeletable(event, supplierName);
     const supplierId = event.currentTarget.getAttribute('supplier-id');
     localStorage.setItem("supplierId", supplierId);
     let products;
@@ -105,6 +104,7 @@ async function filterBySupplier(event){
     if (products.length === 0) {
         alert("We dont have product in this category");
     } else {
+        addSupplierOptionAsSelectedAndDeletable(supplierName);
         currentEventSupplier.removeEventListener("click", filterBySupplier);
         removeContents();
         deleteSupplierFilter(supplierName);
@@ -134,10 +134,10 @@ function deleteSupplierFilter(supplierName) {
     });
 }
 
-function addSupplierOptionAsSelectedAndDeletable(event, supplierName){
-    event.currentTarget.classList.remove('supplier');
-    event.currentTarget.classList.add('deletable-supplier');
-    event.currentTarget.innerHTML = `<i style="font-size:24px" class="fa close-btn">&#xf00d;</i>
+function addSupplierOptionAsSelectedAndDeletable(supplierName){
+    currentEventSupplier.classList.remove('supplier');
+    currentEventSupplier.classList.add('deletable-supplier');
+    currentEventSupplier.innerHTML = `<i style="font-size:24px" class="fa close-btn">&#xf00d;</i>
                                      <span  style="padding-left: 0.2rem">${supplierName}</span>`
 
 }
