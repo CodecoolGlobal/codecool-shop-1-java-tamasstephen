@@ -47,10 +47,12 @@ async function listenToCartChanges(event){
         prod["amount"] = amount;
         const cartProductCount = await dataHandler.upDateOrder(prod);
         const cartContent = await dataHandler.getCartContent();
+        const productSubTotal =  cartContent.filter(product => product["id"] === Number(itemId))[0]["totalPrice"];
         const total = cartContent.filter(product => product["id"] === 0);
 
         //TODO: kind of view thing
-        cart.querySelector(".cart-total").textContent = total[0]["totalPrice"];
+        cart.querySelector(".total-amount").textContent = total[0]["totalPrice"];
+        productDiv.querySelector(".product-total").textContent = productSubTotal;
 
         if (amount === "0"){
 
@@ -61,7 +63,7 @@ async function listenToCartChanges(event){
            const product = cartContent.filter(product => product["id"] === Number(itemId));
 
            //TODO: kind of view thing
-           productDiv.querySelector(".product-total").textContent = product[0]["totalPrice"];
+           productDiv.querySelector(".total-amount").textContent = product[0]["totalPrice"];
 
         }
 

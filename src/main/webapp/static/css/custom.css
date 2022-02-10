@@ -100,7 +100,7 @@ nav {
 
 .categories {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 2fr 1fr;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -428,6 +428,84 @@ div.card-text > .add-to-cart:active,
 .link-button:hover{
     background-color: var(--color-gray-dark);
     color: var(--color-light-text);
+}
+
+.plain-nav > .logo {
+    display: flex;
+    justify-content: center;
+    padding-bottom: .5rem;
+}
+
+.checkout-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: normal;
+    margin-bottom: 3rem;
+}
+
+fieldset > h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: normal;
+    margin-bottom: 1rem;
+}
+
+fieldset + fieldset {
+    margin-top: 4rem;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-item > label {
+    font-size: .925rem;
+    color: var(--color-gray-dark)
+}
+
+.form-item + .form-item {
+    margin-top: 2rem;
+}
+
+.checkout-page input[type="text"],
+.checkout-page input[type="number"],
+.checkout-page input[type="email"],
+.checkout-page input[type="tel"]{
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+
+.checkout-page input[type="text"]:focus,
+.checkout-page input[type="number"]:focus,
+.checkout-page input[type="email"]:focus,
+.checkout-page input[type="tel"]:focus{
+    outline: none;
+    border-bottom: 1px solid dodgerblue;
+}
+
+#shipping-or-not {
+    margin-top: 3rem;
+}
+
+.submit-holder{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+button.link-button {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    border: none;
 }
 
 
