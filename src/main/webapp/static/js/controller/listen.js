@@ -1,5 +1,5 @@
 import {dataHandler} from "../data/dataHandler.js";
-import {generateModal, updateCartTooltip, renderProducts, deleteSupplierFilter, changeSupplierPosition} from "../view/view.js";
+import {generateModal, updateCartTooltip, renderProducts, changeSupplierPosition} from "../view/view.js";
 
 export { addProductToCart, openModal, filterByCategory, filterBySupplier, addEventOnLogo}
 
@@ -85,8 +85,8 @@ function filterBySupplier(){
         const supplierId = event.currentTarget.getAttribute('supplier-id');
         localStorage.setItem("supplierId", supplierId);
         let products;
-        if(localStorage.getItem("supplierId") == null){
-            products = await dataHandler.getProductsByCategory(supplierId);
+        if(localStorage.getItem("categoryId") == null){
+            products = await dataHandler.getProductBySupplier(supplierId);
         } else {
             products = await dataHandler.getProductsByTwoParameter(localStorage.getItem("categoryId"), supplierId);
         }
@@ -105,10 +105,15 @@ function filterBySupplier(){
 function addEventOnLogo(){
     const logo = document.querySelector('.logo');
     logo.addEventListener('click', async () => {
-        const products = await dataHandler.getAllProduct();
-        removeContents();
-        renderProducts(products);
+        await getAllProduct();
     })
+}
+
+async function getAllProduct(){
+    localStorage.clear();
+    const products = await dataHandler.getAllProduct();
+    removeContents();
+    renderProducts(products);
 }
 
 
@@ -132,6 +137,16 @@ function filterByCategory(){
         }
     }
     ))
+}
+
+function deleteSupplierFilter(){
+    const currentSupplier = document.querySelector('.current-supplier');
+    const closeButton = document.querySelector(".close-btn");
+    closeButton.addEventListener('click', async () => {
+        localStorage.removeItem("supplierId");
+        currentSupplier.remove();
+        await getAllProduct();
+    });
 }
 
 function removeContents() {

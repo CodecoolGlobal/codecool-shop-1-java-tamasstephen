@@ -85,15 +85,6 @@ export function generateModal(cartContent){
 
 }
 
-export function deleteSupplierFilter(){
-    const currentSupplier = document.querySelector('.current-supplier');
-    const closeButton = document.querySelector(".close-btn");
-    closeButton.addEventListener('click', () => {
-        localStorage.removeItem("supplierId");
-        currentSupplier.remove();
-    });
-}
-
 export function changeSupplierPosition(supplierName){
     const currentSupplierDiv = document.querySelector('.current-filter');
     currentSupplierDiv.innerHTML = `<div class="supplier current-supplier">
