@@ -52,9 +52,9 @@ async function listenToCartChanges(event){
 
         //TODO: kind of view thing
         cart.querySelector(".total-amount").textContent = total[0]["totalPrice"];
-        productDiv.querySelector(".product-total").textContent = productSubTotal;
 
         if (amount === "0"){
+            console.log(amount);
 
            productDiv.remove();
 
@@ -63,8 +63,8 @@ async function listenToCartChanges(event){
            const product = cartContent.filter(product => product["id"] === Number(itemId));
 
            //TODO: kind of view thing
-           productDiv.querySelector(".total-amount").textContent = product[0]["totalPrice"];
-
+           cart.querySelector(".total-amount").textContent = product[0]["totalPrice"];
+           productDiv.querySelector(".product-total").textContent = productSubTotal;
         }
 
         updateCartTooltip(cartProductCount);
