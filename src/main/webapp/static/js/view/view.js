@@ -1,4 +1,4 @@
-export function updateCartTooltip(amount){
+export function updateCartTooltip(amount) {
 
     const cartTooltip = document.querySelector("#cart-tooltip");
     cartTooltip.innerText = amount;
@@ -9,7 +9,7 @@ export function renderProducts(products) {
     console.log(localStorage.getItem("categoryId"));
     console.log(localStorage.getItem("supplierId"));
     const contentDiv = document.querySelector("#products");
-    for(let product of products){
+    for (let product of products) {
         let outerDiv = document.createElement('div');
         outerDiv.classList.add("col");
         outerDiv.classList.add("col-sm-12");
@@ -35,7 +35,7 @@ export function renderProducts(products) {
 }
 
 
-export function generateModal(cartContent){
+export function generateModal(cartContent) {
 
     const modal = document.createElement("div");
     const cartWrapper = document.createElement("div");
@@ -54,8 +54,8 @@ export function generateModal(cartContent){
     let products = "<div class='cart-upper'>";
     let total = `<div class='cart-lower'>`;
 
-    for (const obj of cartContent){
-        if (obj.id !== 0){
+    for (const obj of cartContent) {
+        if (obj.id !== 0) {
             const div = `<div class="cart-item" data-id="${obj.id}">
                             <p>${obj.name}</p>
                             <p>${obj.unitPrice}</p> 
@@ -85,7 +85,7 @@ export function generateModal(cartContent){
 
 }
 
-export function changeSupplierPosition(supplierName){
+export function changeSupplierPosition(supplierName) {
     const currentSupplierDiv = document.querySelector('.current-filter');
     currentSupplierDiv.innerHTML = `<div class="supplier current-supplier">
                      <span style="padding-left: 0.2rem">${supplierName}</span>

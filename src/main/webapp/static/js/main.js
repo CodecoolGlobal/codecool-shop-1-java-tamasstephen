@@ -1,4 +1,4 @@
-import {addProductToCart, filterBySupplier, filterByCategory, addEventOnLogo} from "./controller/listen.js";
+import {addProductToCart, addEventOnSuppliers, filterByCategory, addEventOnLogo} from "./controller/listen.js";
 import { openModal } from "./controller/listen.js";
 import {updateCartTooltip} from "./view/view.js";
 import {dataHandler} from "./data/dataHandler.js";
@@ -12,7 +12,7 @@ async function init(){
     setUpCartButton();
     updateCartTooltip(await dataHandler.getProductCount());
     filterByCategory();
-    filterBySupplier();
+    addEventOnSuppliers();
     addEventOnLogo();
     localStorage.clear();
 }
