@@ -29,6 +29,9 @@ const dataHandler = {
     async getProductsByTwoParameter(categoryId, supplierId){
         return await this.apiGet(`/api/filter?categoryId=${categoryId}&supplierId=${supplierId}`);
     },
+    async getAllSupplier(){
+        return await this.apiGet('/api/all-supplier');
+    },
 
     async apiPost(url, payload){
         const response = await fetch(url, {
