@@ -197,7 +197,7 @@ function handlePaymentOption(event){
     const paypalPayment = document.querySelector(".paypal-payment");
     const cardPayment = document.querySelector(".credit-card-payment");
 
-    if (event.currentTarget.id === "paypal"){
+    if (event.currentTarget.classList.contains("paypal-card")){
 
         document.querySelector(".paypal-card").classList.add("selected")
         document.querySelector(".card-card").classList.remove("selected")
