@@ -6,8 +6,6 @@ export function updateCartTooltip(amount) {
 }
 
 export function renderProducts(products) {
-    console.log(localStorage.getItem("categoryId"));
-    console.log(localStorage.getItem("supplierId"));
     const contentDiv = document.querySelector("#products");
     for (let product of products) {
         let outerDiv = document.createElement('div');

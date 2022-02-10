@@ -1,7 +1,7 @@
 import {dataHandler} from "../data/dataHandler.js";
 import {generateModal, updateCartTooltip, renderProducts} from "../view/view.js";
 
-export {addProductToCart, openModal, addEventOnCategory, addEventOnSuppliers, addEventOnLogo}
+export {addProductToCart, openModal, addEventOnCategory, addEventOnSuppliers, addEventOnLogo, setUpProductButtons}
 
 
 async function addProductToCart(event) {
@@ -21,6 +21,11 @@ async function openModal() {
     closeCartLink.addEventListener("click", listenToModalClose);
     setUpCartInputs();
 
+}
+
+function setUpProductButtons(fnc){
+    const buttons = document.querySelectorAll(".add-to-cart");
+    buttons.forEach(button => button.addEventListener("click", addProductToCart));
 }
 
 function setUpCartInputs() {
@@ -104,6 +109,7 @@ async function filterBySupplier(event){
         removeContents();
         deleteSupplierFilter(supplierName);
         renderProducts(products);
+        setUpProductButtons();
     }
 }
 
@@ -119,14 +125,12 @@ function deleteSupplierFilter(supplierName) {
 
         if(localStorage.getItem("categoryId") == null){
             await getAllProduct();
+            setUpProductButtons();
         } else {
             await filterByCategory(currentEventCategory);
+            setUpProductButtons();
         }
         currentEventSupplier.addEventListener("click", filterBySupplier);
-        //TODO: add event on suppliers again after delete, and add cart event after refresh the product content,
-        // and maybe if delete one filter parameter then change the page content to the one filter parameter or if there is no
-        // filter parameter then render all products
-
     });
 }
 
@@ -143,6 +147,7 @@ function addEventOnLogo() {
     logo.addEventListener('click', async () => {
         localStorage.clear();
         await getAllProduct();
+        setUpProductButtons();
     })
 }
 
@@ -150,12 +155,14 @@ async function getAllProduct() {
     const products = await dataHandler.getAllProduct();
     removeContents();
     renderProducts(products);
+    setUpProductButtons();
 }
 
 function addEventOnCategory() {
     const buttons = document.querySelectorAll(".menu div");
     buttons.forEach(button => button.addEventListener("click", async (event) => {
-            await filterByCategory(event.currentTarget)
+        await filterByCategory(event.currentTarget)
+        setUpProductButtons();
         }
     ))
 }
