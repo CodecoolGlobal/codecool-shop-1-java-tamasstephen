@@ -464,6 +464,11 @@ fieldset + fieldset {
     flex-direction: column;
 }
 
+.form-item > label {
+    font-size: .925rem;
+    color: var(--color-gray-dark)
+}
+
 .form-item + .form-item {
     margin-top: 2rem;
 }
