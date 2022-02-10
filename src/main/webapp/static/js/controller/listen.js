@@ -107,7 +107,6 @@ async function filterBySupplier(event){
             changeSupplierInnerContent(currentEventSupplier.getAttribute("supplier-name"));
             currentEventSupplier.addEventListener("click", filterBySupplier);
         }
-        console.log(tempEvent);
         currentEventSupplier = tempEvent;
         localStorage.setItem("supplierId", supplierId);
         addSupplierOptionAsSelectedAndDeletable(supplierName);
@@ -172,11 +171,6 @@ async function getAllProduct() {
     addEventOnSuppliers();
     setUpProductButtons();
 }
-
-// `<div class="supplier"  supplier-name="${supplier.name}"
-//      supplier-id="${supplier.id}">
-//
-// </div>`
 
 function renderAllSupplier(suppliers){
     const suppliersDiv = document.querySelector(".suppliers");
