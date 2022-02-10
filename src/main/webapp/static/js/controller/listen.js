@@ -1,5 +1,5 @@
 import {dataHandler} from "../data/dataHandler.js";
-import {generateModal, updateCartTooltip, renderProducts, changeSupplierPosition} from "../view/view.js";
+import {generateModal, updateCartTooltip, renderProducts} from "../view/view.js";
 
 export {addProductToCart, openModal, filterByCategory, addEventOnSuppliers, addEventOnLogo}
 
@@ -102,7 +102,6 @@ async function filterBySupplier(event){
     } else {
         currentEvent.removeEventListener("click", filterBySupplier);
         removeContents();
-        // changeSupplierPosition(supplierName);
         deleteSupplierFilter(supplierName);
         renderProducts(products);
     }

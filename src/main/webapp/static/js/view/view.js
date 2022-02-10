@@ -85,9 +85,3 @@ export function generateModal(cartContent) {
 
 }
 
-export function changeSupplierPosition(supplierName) {
-    const currentSupplierDiv = document.querySelector('.current-filter');
-    currentSupplierDiv.innerHTML = `<div class="supplier current-supplier">
-                     <span style="padding-left: 0.2rem">${supplierName}</span>
-                    <i style="font-size:24px" class="fa close-btn">&#xf00d;</i> </div>`;
-}
